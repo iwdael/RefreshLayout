@@ -8,10 +8,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import com.absurd.refreshandloadlayout.OnRefreshAndLoadListener;
 import com.absurd.refreshandloadlayout.RefreshAndLoadingLayout;
 
 
-public class MainActivity extends Activity implements RefreshAndLoadingLayout.OnRefreshListener {
+public class MainActivity extends Activity implements OnRefreshAndLoadListener {
     private RefreshAndLoadingLayout mSwipeLayout;
     private WebView mPage;
     private TextView mHint, mHinp;

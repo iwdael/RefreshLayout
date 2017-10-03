@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RefreshAndLoadingLayout">
+        <attr name="refreshEnabled" format="boolean"></attr>
+        <attr name="loadEnabled" format="boolean" />
+    </declare-styleable>
+</resources>

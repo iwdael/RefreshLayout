@@ -1,18 +1,4 @@
-/*
- * Copyright (C) 2013 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 
 package com.absurd.refreshandloadlayout;
 
@@ -42,9 +28,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private static final int REFRESH_TRIGGER_DISTANCE = 120;
     private static final int INVALID_POINTER = -1;
 
-    private View mTarget; // the content that gets pulled down
+    private View mTarget;
     private int mOriginalOffsetTop;
-    private OnRefreshListener mListener;
+    private OnRefreshAndLoadListener mListener;
     private int mFrom;
     private boolean mRefreshing = false;
     private int mTouchSlop;
@@ -58,8 +44,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private boolean mIsBeingDragged;
     private int mActivePointerId = INVALID_POINTER;
 
-    // Target is returning to its start offset because it was cancelled or a
-    // refresh was triggered.
+
     private boolean mReturningToStart;
     private final DecelerateInterpolator mDecelerateInterpolator;
     private static final int[] LAYOUT_ATTRS = new int[]{android.R.attr.enabled};
@@ -69,6 +54,8 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private STATUS mStatus = STATUS.NORMAL;
     private boolean mDisable; // 用来控制控件是否允许滚动
     private boolean mCurrentIsHeaderrefresh = true;
+    private boolean mRefrshEnabled = true;
+    private boolean mLoadEnabled = true;
 
     private enum STATUS {
         NORMAL, LOOSEN, REFRESHING
@@ -88,7 +75,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 if (offset + currentTop < 0) {
                     offset = 0 - currentTop;
                 }
-            }else {
+            } else {
                 if (mFrom != mOriginalOffsetTop) {
                     targetTop = (mFrom + (int) ((mOriginalOffsetTop - mFrom) * interpolatedTime));
                 }
@@ -143,8 +130,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private final AnimationListener mReturnToHeaderPositionListener = new BaseAnimationListener() {
         @Override
         public void onAnimationEnd(Animation animation) {
-            // Once the target content has returned to its start position, reset
-            // the target offset to 0
+
             mCurrentTargetOffsetTop = mHeaderHeight;
             mStatus = STATUS.REFRESHING;
         }
@@ -166,8 +152,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
     };
 
-    // Cancel the refresh gesture and animate everything back to its original
-    // state.
+
     private final Runnable mCancel = new Runnable() {
         @Override
         public void run() {
@@ -176,35 +161,29 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
     };
 
-    /**
-     * Simple constructor to use when creating a SwipeRefreshLayout from code.
-     *
-     * @param context
-     */
+
     public RefreshAndLoadingLayout(Context context) {
         this(context, null);
     }
 
-    /**
-     * Constructor that is called when inflating SwipeRefreshLayout from XML.
-     *
-     * @param context
-     * @param attrs
-     */
+
     public RefreshAndLoadingLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
+    }
 
+    public RefreshAndLoadingLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-
-        mMediumAnimationDuration = getResources().getInteger(
-                android.R.integer.config_mediumAnimTime);
-
-        mDecelerateInterpolator = new DecelerateInterpolator(
-                DECELERATE_INTERPOLATION_FACTOR);
-
+        mMediumAnimationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
+        mDecelerateInterpolator = new DecelerateInterpolator(DECELERATE_INTERPOLATION_FACTOR);
         final TypedArray a = context.obtainStyledAttributes(attrs, LAYOUT_ATTRS);
         setEnabled(a.getBoolean(0, true));
         a.recycle();
+        TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RefreshAndLoadingLayout, defStyleAttr, 0);
+        mRefrshEnabled = ta.getBoolean(R.styleable.RefreshAndLoadingLayout_refreshEnabled, true);
+        mLoadEnabled = ta.getBoolean(R.styleable.RefreshAndLoadingLayout_loadEnabled, true);
+        ta.recycle();
+
     }
 
     @Override
@@ -241,20 +220,12 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         mTarget.startAnimation(mAnimateToHeaderPosition);
     }
 
-    /**
-     * Set the listener to be notified when a refresh is triggered via the swipe
-     * gesture.
-     */
-    public void setOnRefreshListener(OnRefreshListener listener) {
+
+    public void setOnRefreshListener(OnRefreshAndLoadListener listener) {
         mListener = listener;
     }
 
-    /**
-     * Notify the widget that refresh state has changed. Do not call this when
-     * refresh is triggered by a swipe gesture.
-     *
-     * @param refreshing Whether or not the view should show refresh progress.
-     */
+
     public void setRefreshing(boolean refreshing) {
         if (mRefreshing != refreshing) {
             ensureTarget();
@@ -262,20 +233,14 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
     }
 
-    /**
-     * @return Whether the SwipeRefreshWidget is actively showing refresh
-     * progress.
-     */
     public boolean isRefreshing() {
         return mRefreshing;
     }
 
     private void ensureTarget() {
-        // Don't bother getting the parent height if the parent hasn't been laid
-        // out yet.
         if (mTarget == null) {
             if (getChildCount() > 3 && !isInEditMode()) {
-                throw new IllegalStateException("SwipeRefreshLayout can only host Three children");
+                throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
             }
             mTarget = getChildAt(1);
 
@@ -325,11 +290,11 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         if (getChildCount() <= 2) {
-            throw new IllegalStateException("SwipeRefreshLayout must have the headerview and contentview");
+            throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
         }
 
         if (getChildCount() > 3 && !isInEditMode()) {
-            throw new IllegalStateException("SwipeRefreshLayout can only host two children");
+            throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
         }
 
         if (mHeaderView == null) {
@@ -352,10 +317,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                         MeasureSpec.EXACTLY));
     }
 
-    /**
-     * @return Whether it is possible for the child view of this layout to
-     * scroll up. Override this if the child view is a custom view.
-     */
+
     public boolean canChildScrollUp() {
         if (android.os.Build.VERSION.SDK_INT < 14) {
             if (mTarget instanceof AbsListView) {
@@ -373,7 +335,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (android.os.Build.VERSION.SDK_INT < 14) {
             if (mTarget instanceof AbsListView) {
                 final AbsListView absListView = (AbsListView) mTarget;
-                //     return absListView.getChildCount() > 0 && (absListView.getLastVisiblePosition() < absListView.getMeasuredHeight() - absListView.getPaddingTop() || absListView.getChildAt(absListView.getChildCount()).getTop() < absListView.getMeasuredHeight());
                 return absListView.getLastVisiblePosition() == absListView.getCount() - 1;
             } else {
                 return mTarget.getScrollY() > 0;
@@ -393,9 +354,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
             mReturningToStart = false;
         }
 
-        //   Log.v("TAG","----Down---->>"+ canChildScrollDown()+"   ----Up---->>"+canChildScrollUp());
         if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
-            // Fail fast if we're not in a state where a swipe is possible
             return false;
         }
 
@@ -442,7 +401,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     @Override
     public void requestDisallowInterceptTouchEvent(boolean b) {
-        // Nope.
+
     }
 
     @Override
@@ -454,7 +413,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
 
         if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
-            // Fail fast if we're not in a state where a swipe is possible
+            return false;
+        }
+        if (!mRefrshEnabled && !mLoadEnabled) {
             return false;
         }
 
@@ -476,13 +437,19 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
 
                 final float yDiff = y - mInitialMotionY;
-                Log.v("TAG", "------>>" + yDiff);
+
+                if (!mRefrshEnabled && yDiff > 0) {
+                    return false;
+                }
+                if (!mLoadEnabled && yDiff < 0) {
+                    return false;
+                }
+
                 if (!mIsBeingDragged && Math.abs(yDiff) > mTouchSlop) {
                     mIsBeingDragged = true;
                 }
 
                 if (mIsBeingDragged) {
-                    // User velocity passed min velocity; trigger a refresh
 
                     if (Math.abs(yDiff) > mHeaderDistanceToTriggerSync) {
                         if (mStatus == STATUS.NORMAL) {
@@ -589,7 +556,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
             mCurrentTargetOffsetTop = mTarget.getTop();
             invalidate();
         } else {
-            Log.v("TAG", "---isHeader---->>" + offset);
             mTarget.offsetTopAndBottom(offset);
             mBooterView.offsetTopAndBottom(offset);
             mCurrentTargetOffsetTop = mTarget.getTop();
@@ -607,8 +573,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
 
         if (pointerId == mActivePointerId) {
-            // This was our active pointer going up. Choose a new
-            // active pointer and adjust accordingly.
             final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
             mLastMotionY = MotionEventCompat.getY(ev, newPointerIndex);
             mActivePointerId = MotionEventCompat.getPointerId(ev,
@@ -616,22 +580,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
     }
 
-    /**
-     * Classes that wish to be notified when the swipe gesture correctly
-     * triggers a normal/ready-refresh/refresh should implement this interface.
-     */
-    public interface OnRefreshListener {
-        public void onNormal(boolean mCurrentIsHeader);
 
-        public void onLoose(boolean mCurrentIsHeade);
-
-        public void onRefresh(boolean mCurrentIsHeade);
-    }
-
-    /**
-     * Simple AnimationListener to avoid having to implement unneeded methods in
-     * AnimationListeners.
-     */
     private class BaseAnimationListener implements AnimationListener {
         @Override
         public void onAnimationStart(Animation animation) {
