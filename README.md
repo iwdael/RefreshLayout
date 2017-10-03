@@ -1,5 +1,5 @@
 # RefreshAndLoadingLayout
-Refreshandloadinglayout is a android framework that have two function - - refresh and loading.
+Pull-up refresh and drop-down is the most commonly used in the development of Andrews data refresh and load function. RefreshAndLoadLayout implements the above functions, which provides three interfaces for developers to implement the corresponding animation (onRefresh, onNormal, onLoose), it also provides a pull-up refresh and pull-down load switch settings, to meet most of the development.
 # How to
 To get a Git project into your build:
 ## Step 1. Add the JitPack repository to your build file
@@ -87,6 +87,8 @@ RefreshAndLoadingLayout must hava three child only.
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+	app:loadEnabled="false"
+        app:refreshEnabled="false"
         android:scrollbars="none">
 
         <LinearLayout
