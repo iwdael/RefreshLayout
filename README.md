@@ -1,4 +1,4 @@
-# RefreshAndLoadingLayout
+# RefreshAndLoadingLayout  [![](https://www.jitpack.io/v/mr-absurd/RefreshAndLoadLayout.svg)](https://www.jitpack.io/#mr-absurd/RefreshAndLoadLayout)
 Pull-up refresh and drop-down is the most commonly used in the development of Andrews data refresh and load function. RefreshAndLoadLayout implements the above functions, which provides three interfaces for developers to implement the corresponding animation (onRefresh, onNormal, onLoose), it also provides a pull-up refresh and pull-down load switch settings, to meet most of the development.
 # How to
 To get a Git project into your build:
