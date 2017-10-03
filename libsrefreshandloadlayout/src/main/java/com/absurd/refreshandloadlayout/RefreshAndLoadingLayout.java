@@ -8,7 +8,6 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -113,7 +112,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     offset = currentTop;
                 }
             }
-            Log.v("TAG", "---offset2--->>" + offset);
             setTargetOffsetTopAndBottom(offset, mCurrentIsHeaderrefresh);
         }
     };
@@ -367,14 +365,12 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
             case MotionEvent.ACTION_MOVE:
                 if (mActivePointerId == INVALID_POINTER) {
-                    Log.e(LOG_TAG, "Got ACTION_MOVE event but don't have an active pointer id.");
-                    return false;
+                     return false;
                 }
 
                 final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
                 if (pointerIndex < 0) {
-                    Log.e(LOG_TAG, "Got ACTION_MOVE event but have an invalid active pointer id.");
-                    return false;
+                     return false;
                 }
 
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
@@ -430,8 +426,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
 
                 if (pointerIndex < 0) {
-                    Log.e(LOG_TAG, "Got ACTION_MOVE event but have an invalid active pointer id.");
-                    return false;
+                     return false;
                 }
 
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
