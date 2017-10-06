@@ -8,6 +8,7 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -275,12 +276,13 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
         final View child = getChildAt(1);
         final int childLeft = getPaddingLeft();
-        final int childTop = mCurrentTargetOffsetTop + getPaddingTop();
+        final int childTop =   getPaddingTop();
         final int childWidth = width - getPaddingLeft() - getPaddingRight();
         final int childHeight = height - getPaddingTop() - getPaddingBottom();
         child.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
         mHeaderView.layout(childLeft, childTop - mHeaderHeight, childLeft + childWidth, childTop);
         mBooterView.layout(childLeft, child.getMeasuredHeight(), childLeft + childWidth, child.getMeasuredHeight() + mBooterHeight);
+        Log.v("TAG","--!---mHeader -------------onLayout---");
     }
 
     @Override
@@ -351,10 +353,14 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (mReturningToStart && action == MotionEvent.ACTION_DOWN) {
             mReturningToStart = false;
         }
-
-        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
+        if (mRefreshing) {
             return false;
         }
+        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
+            if (canChildScrollUp() && canChildScrollDown())
+                return false;
+        }
+
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
@@ -364,6 +370,15 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 break;
 
             case MotionEvent.ACTION_MOVE:
+                if (canChildScrollDown()) {
+                    if (ev.getY() - mLastMotionY < 0)
+                        return false;
+                }
+                if (canChildScrollUp()) {
+                    if (ev.getY() - mLastMotionY > 0)
+                        return false;
+                }
+
                 if (mActivePointerId == INVALID_POINTER) {
                     return false;
                 }
@@ -408,9 +423,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
             mReturningToStart = false;
         }
 
-        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
-            return false;
-        }
         if (!mRefrshEnabled && !mLoadEnabled) {
             return false;
         }
@@ -429,7 +441,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     return false;
                 }
 
-                final float y = MotionEventCompat.getY(ev, pointerIndex);
+                final float y = ev.getY();
 
                 final float yDiff = y - mInitialMotionY;
 
@@ -498,7 +510,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 return false;
             case MotionEvent.ACTION_CANCEL:
                 updatePositionTimeout();
-
                 mIsBeingDragged = false;
                 mActivePointerId = INVALID_POINTER;
                 return false;
@@ -526,6 +537,8 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (isHeader == true) {
             mCurrentIsHeaderrefresh = true;
             final int currentTop = mTarget.getTop();
+            Log.v("TAG", "------currentTop--------" + currentTop);
+            Log.v("TAG", "------mHeaderDistanceToTriggerSync--------" + mHeaderDistanceToTriggerSync);
             if (targetTop > mHeaderDistanceToTriggerSync) {
                 targetTop = (int) mHeaderDistanceToTriggerSync + (int) (targetTop - mHeaderDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
             } else if (targetTop < 0) {
@@ -546,13 +559,17 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     private void setTargetOffsetTopAndBottom(int offset, boolean isHeader) {
         if (isHeader == true) {
-            mTarget.offsetTopAndBottom(offset);
             mHeaderView.offsetTopAndBottom(offset);
+            mTarget.offsetTopAndBottom(offset);
+//            Log.v("TAG","--!---mCurrentTargetOffsetTop------>> "+mCurrentTargetOffsetTop);
+//            Log.v("TAG","--!---mHeaderViewtTop------>> "+mHeaderView.getTop());
             mCurrentTargetOffsetTop = mTarget.getTop();
+            Log.v("TAG","--!---mHeader--------------------------------------");
             invalidate();
         } else {
-            mTarget.offsetTopAndBottom(offset);
             mBooterView.offsetTopAndBottom(offset);
+            mTarget.offsetTopAndBottom(offset);
+            Log.v("TAG","--!---mHeaderViewtTop------>> "+mHeaderView.getTop());
             mCurrentTargetOffsetTop = mTarget.getTop();
             invalidate();
         }
