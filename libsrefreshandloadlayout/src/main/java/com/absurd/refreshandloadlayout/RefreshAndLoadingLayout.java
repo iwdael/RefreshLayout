@@ -333,12 +333,12 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (android.os.Build.VERSION.SDK_INT < 14) {
             if (mTarget instanceof AbsListView) {
                 final AbsListView absListView = (AbsListView) mTarget;
-                return absListView.getLastVisiblePosition() == absListView.getCount() - 1;
+                return absListView.getChildCount() > 0 && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0).getTop() < absListView.getPaddingTop());
             } else {
                 return mTarget.getScrollY() > 0;
             }
         } else {
-            return ViewCompat.canScrollVertically(mTarget, -1);
+            return ViewCompat.canScrollVertically(mTarget, 1);
         }
     }
 
@@ -365,12 +365,12 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
             case MotionEvent.ACTION_MOVE:
                 if (mActivePointerId == INVALID_POINTER) {
-                     return false;
+                    return false;
                 }
 
                 final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
                 if (pointerIndex < 0) {
-                     return false;
+                    return false;
                 }
 
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
@@ -426,7 +426,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
 
                 if (pointerIndex < 0) {
-                     return false;
+                    return false;
                 }
 
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
