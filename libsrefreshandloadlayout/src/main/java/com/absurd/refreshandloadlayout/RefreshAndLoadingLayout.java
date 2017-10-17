@@ -8,7 +8,6 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -20,7 +19,7 @@ import android.view.animation.Transformation;
 import android.widget.AbsListView;
 
 public class RefreshAndLoadingLayout extends ViewGroup {
-    private static final String LOG_TAG = RefreshAndLoadingLayout.class.getSimpleName();
+
 
     private static final long RETURN_TO_ORIGINAL_POSITION_TIMEOUT = 300;
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
@@ -282,8 +281,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         child.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
         mHeaderView.layout(childLeft, childTop - mHeaderHeight, childLeft + childWidth, childTop);
         mBooterView.layout(childLeft, child.getMeasuredHeight(), childLeft + childWidth, child.getMeasuredHeight() + mBooterHeight);
-        Log.v("TAG","--!---mHeader -------------onLayout---");
-    }
+     }
 
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -537,8 +535,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (isHeader == true) {
             mCurrentIsHeaderrefresh = true;
             final int currentTop = mTarget.getTop();
-            Log.v("TAG", "------currentTop--------" + currentTop);
-            Log.v("TAG", "------mHeaderDistanceToTriggerSync--------" + mHeaderDistanceToTriggerSync);
             if (targetTop > mHeaderDistanceToTriggerSync) {
                 targetTop = (int) mHeaderDistanceToTriggerSync + (int) (targetTop - mHeaderDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
             } else if (targetTop < 0) {
@@ -561,15 +557,11 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (isHeader == true) {
             mHeaderView.offsetTopAndBottom(offset);
             mTarget.offsetTopAndBottom(offset);
-//            Log.v("TAG","--!---mCurrentTargetOffsetTop------>> "+mCurrentTargetOffsetTop);
-//            Log.v("TAG","--!---mHeaderViewtTop------>> "+mHeaderView.getTop());
             mCurrentTargetOffsetTop = mTarget.getTop();
-            Log.v("TAG","--!---mHeader--------------------------------------");
             invalidate();
         } else {
             mBooterView.offsetTopAndBottom(offset);
             mTarget.offsetTopAndBottom(offset);
-            Log.v("TAG","--!---mHeaderViewtTop------>> "+mHeaderView.getTop());
             mCurrentTargetOffsetTop = mTarget.getTop();
             invalidate();
         }
