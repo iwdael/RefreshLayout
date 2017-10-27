@@ -275,13 +275,13 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
         final View child = getChildAt(1);
         final int childLeft = getPaddingLeft();
-        final int childTop =   getPaddingTop();
+        final int childTop = getPaddingTop();
         final int childWidth = width - getPaddingLeft() - getPaddingRight();
         final int childHeight = height - getPaddingTop() - getPaddingBottom();
         child.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
         mHeaderView.layout(childLeft, childTop - mHeaderHeight, childLeft + childWidth, childTop);
         mBooterView.layout(childLeft, child.getMeasuredHeight(), childLeft + childWidth, child.getMeasuredHeight() + mBooterHeight);
-     }
+    }
 
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -441,7 +441,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
                 final float y = ev.getY();
 
-                final float yDiff = y - mInitialMotionY;
+                final float yDiff = (y - mInitialMotionY) / 2;
 
                 if (!mRefrshEnabled && yDiff > 0) {
                     return false;
@@ -455,32 +455,37 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 }
 
                 if (mIsBeingDragged) {
-
-                    if (Math.abs(yDiff) > mHeaderDistanceToTriggerSync) {
+                    mCurrentIsHeaderrefresh = yDiff > 0;
+                    updateContentOffsetTop((yDiff), mCurrentIsHeaderrefresh);
+                    if (yDiff > mHeaderDistanceToTriggerSync | yDiff < -mBooterDistanceToTriggerSync) {
                         if (mStatus == STATUS.NORMAL) {
                             mStatus = STATUS.LOOSEN;
+                            if (mListener != null) mListener.onLoose(mCurrentIsHeaderrefresh);
 
-                            if (mListener != null) {
-                                mListener.onLoose(mCurrentIsHeaderrefresh);
-                            }
-                        }
-
-                        updateContentOffsetTop((int) (yDiff), yDiff > 0 ? true : false);
-                    } else {
-                        if (mStatus == STATUS.LOOSEN) {
-                            mStatus = STATUS.NORMAL;
-
-                            if (mListener != null) {
-                                mListener.onNormal(mCurrentIsHeaderrefresh);
-                            }
-                        }
-
-                        updateContentOffsetTop((int) (yDiff), yDiff > 0 ? true : false);
-                        if (mLastMotionY > y && mTarget.getTop() == getPaddingTop()) {
-                            removeCallbacks(mCancel);
                         }
                     }
-
+//                    if (mCurrentIsHeaderrefresh) {
+//                        if (Math.abs(yDiff) > mHeaderDistanceToTriggerSync) {
+//                            if (mStatus == STATUS.NORMAL) {
+//                                mStatus = STATUS.LOOSEN;
+//                                if (mListener != null) {
+//                                    mListener.onLoose(mCurrentIsHeaderrefresh);
+//                                }
+//                            }
+//                        }
+//                    } else {
+//                        if (Math.abs(yDiff) > mBooterDistanceToTriggerSync) {
+//                            if (mStatus == STATUS.NORMAL) {
+//                                mStatus = STATUS.LOOSEN;
+//                                if (mListener != null) {
+//                                    mListener.onLoose(mCurrentIsHeaderrefresh);
+//                                }
+//                            }
+//                        }
+//                    }
+                    if (mLastMotionY > y && mTarget.getTop() == getPaddingTop()) {
+                        removeCallbacks(mCancel);
+                    }
                     mLastMotionY = y;
                 }
                 break;
@@ -531,26 +536,25 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         mReturnToStartPosition.run();
     }
 
-    private void updateContentOffsetTop(int targetTop, boolean isHeader) {
-        if (isHeader == true) {
-            mCurrentIsHeaderrefresh = true;
-            final int currentTop = mTarget.getTop();
-            if (targetTop > mHeaderDistanceToTriggerSync) {
-                targetTop = (int) mHeaderDistanceToTriggerSync + (int) (targetTop - mHeaderDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
-            } else if (targetTop < 0) {
-                targetTop = 0;
-            }
-            setTargetOffsetTopAndBottom(targetTop - currentTop, true);
-        } else {
-            mCurrentIsHeaderrefresh = false;
-            final int currentTop = mTarget.getTop();
-            if (Math.abs(targetTop) > mBooterDistanceToTriggerSync) {
-                targetTop = (int) -mBooterDistanceToTriggerSync + (int) (targetTop + mBooterDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
-            } else if (targetTop > mTarget.getMeasuredHeight()) {
-                targetTop = 0;
-            }
-            setTargetOffsetTopAndBottom(targetTop - currentTop, false);
-        }
+    private void updateContentOffsetTop(float targetTop, boolean isHeader) {
+//        if (isHeader == true) {
+//            final int currentTop = mTarget.getTop();
+//            if (targetTop / 2 > mHeaderDistanceToTriggerSync) {
+//                targetTop = (int) mHeaderDistanceToTriggerSync + (int) (targetTop - mHeaderDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
+//            } else if (targetTop < 0) {
+//                targetTop = 0;
+//            }
+//            setTargetOffsetTopAndBottom(targetTop - currentTop, true);
+//        } else {
+//            final int currentTop = mTarget.getTop();
+//            if (Math.abs(targetTop)/2 > mBooterDistanceToTriggerSync) {
+//                targetTop = (int) -mBooterDistanceToTriggerSync + (int) (targetTop + mBooterDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
+//            } else if (targetTop > mTarget.getMeasuredHeight()) {
+//                targetTop = 0;
+//            }
+//            setTargetOffsetTopAndBottom(targetTop - currentTop, false);
+//        }
+        setTargetOffsetTopAndBottom((int) (targetTop - mTarget.getTop()), isHeader);
     }
 
     private void setTargetOffsetTopAndBottom(int offset, boolean isHeader) {

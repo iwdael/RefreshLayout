@@ -40,24 +40,19 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
         mHint = (TextView) findViewById(R.id.hint);
         mHinp = (TextView) findViewById(R.id.hinp);
         mSwipeLayout.setOnRefreshListener(this);
+
+        data.clear();
+        page = 1;
+
+        for (int i = 0; i < 10; i++) {
+            data.add("------" + (page * 10 + i) + "--------");
+        }
+        adapter.bindData(data);
     }
 
     @Override
     public void onRefresh(boolean mCurrent) {
-        data.clear();
-        isRefresh = mCurrent;
-        Log.v("TAG", "--------mCurrent------------" + isRefresh);
-        if (isRefresh) {
-            page = 1;
-        } else {
-            page = page + 1;
-        }
-        for (int i = 0; i < 10; i++) {
-            data.add("------" + (page * 10 + i) + "--------");
-        }
-        if (isRefresh) {
-            adapter.clear();
-        }
+
         mHint.setText("正在刷新，请等待");
         mHinp.setText("正在刷新，请等待");
         new Handler().postDelayed(new Runnable() {
@@ -65,13 +60,13 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
             public void run() {
                 // 停止刷新
 
-                adapter.bindData(data);
+
                 mSwipeLayout.setRefreshing(false);
                 mSwipeLayout.stopRefresh();
                 mHint.setText("下拉刷新");
                 mHinp.setText("下拉刷新");
             }
-        }, 3000);
+        }, 500);
     }
 
     @Override
