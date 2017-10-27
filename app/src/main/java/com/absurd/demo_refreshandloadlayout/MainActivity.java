@@ -44,7 +44,7 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
         data.clear();
         page = 1;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             data.add("------" + (page * 10 + i) + "--------");
         }
         adapter.bindData(data);
@@ -52,16 +52,12 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
 
     @Override
     public void onRefresh(boolean mCurrent) {
-
+        Log.v("TAG","------onRefresh----->>"+mCurrent);
         mHint.setText("正在刷新，请等待");
         mHinp.setText("正在刷新，请等待");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // 停止刷新
-
-
-                mSwipeLayout.setRefreshing(false);
                 mSwipeLayout.stopRefresh();
                 mHint.setText("下拉刷新");
                 mHinp.setText("下拉刷新");
@@ -71,6 +67,7 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
 
     @Override
     public void onNormal(boolean mCurrent) {
+        Log.v("TAG","------onNormal----->>"+mCurrent);
         if (mCurrent)
             mHint.setText("下拉刷新");
         else
@@ -80,6 +77,7 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
 
     @Override
     public void onLoose(boolean mCurrent) {
+        Log.v("TAG","------onLoose----->>"+mCurrent);
         if (mCurrent)
             mHint.setText("松手刷新");
         else

@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="78dp"
                 android:gravity="center"
-                android:text="下拉刷新"
+                android:text="上拉加载"
                 android:textColor="#000"
                 android:textSize="20sp" />
 

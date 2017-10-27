@@ -52,7 +52,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private int mHeaderHeight, mBooterHeight;
     private STATUS mStatus = STATUS.NORMAL;
     private boolean mDisable; // 用来控制控件是否允许滚动
-    private boolean mCurrentIsHeaderrefresh = true;
+    private Boolean mCurrentIsHeaderrefresh = null;
     private boolean mRefrshEnabled = true;
     private boolean mLoadEnabled = true;
 
@@ -65,6 +65,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         public void applyTransformation(float interpolatedTime, Transformation t) {
             int targetTop = 0;
             int offset = 0;
+            if (mCurrentIsHeaderrefresh == null) return;
             if (mCurrentIsHeaderrefresh == true) {
                 if (mFrom != mOriginalOffsetTop) {
                     targetTop = (mFrom + (int) ((mOriginalOffsetTop - mFrom) * interpolatedTime));
@@ -122,6 +123,11 @@ public class RefreshAndLoadingLayout extends ViewGroup {
             mCurrentTargetOffsetTop = 0;
             mStatus = STATUS.NORMAL;
             mDisable = false;
+            if (mListener != null) {
+                mRefreshing = false;
+                mListener.onNormal(mCurrentIsHeaderrefresh);
+                mCurrentIsHeaderrefresh = null;
+            }
         }
     };
 
@@ -207,6 +213,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         mAnimateToStartPosition.setAnimationListener(listener);
         mAnimateToStartPosition.setInterpolator(mDecelerateInterpolator);
         mTarget.startAnimation(mAnimateToStartPosition);
+
     }
 
     private void animateOffsetToHeaderPosition(int from, AnimationListener listener) {
@@ -216,6 +223,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         mAnimateToHeaderPosition.setAnimationListener(listener);
         mAnimateToHeaderPosition.setInterpolator(mDecelerateInterpolator);
         mTarget.startAnimation(mAnimateToHeaderPosition);
+
     }
 
 
@@ -455,13 +463,14 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 }
 
                 if (mIsBeingDragged) {
-                    mCurrentIsHeaderrefresh = yDiff > 0;
+                    if (mCurrentIsHeaderrefresh == null) {
+                        mCurrentIsHeaderrefresh = yDiff > 0;
+                    }
                     updateContentOffsetTop((yDiff), mCurrentIsHeaderrefresh);
                     if (yDiff > mHeaderDistanceToTriggerSync | yDiff < -mBooterDistanceToTriggerSync) {
                         if (mStatus == STATUS.NORMAL) {
                             mStatus = STATUS.LOOSEN;
                             if (mListener != null) mListener.onLoose(mCurrentIsHeaderrefresh);
-
                         }
                     }
 //                    if (mCurrentIsHeaderrefresh) {
