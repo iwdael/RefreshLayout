@@ -125,6 +125,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
             mDisable = false;
             if (mListener != null) {
                 mRefreshing = false;
+                if (mCurrentIsHeaderrefresh==null){return;}
                 mListener.onNormal(mCurrentIsHeaderrefresh);
                 mCurrentIsHeaderrefresh = null;
             }
