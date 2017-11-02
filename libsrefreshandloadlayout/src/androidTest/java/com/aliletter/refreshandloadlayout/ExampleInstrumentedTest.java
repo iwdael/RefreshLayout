@@ -1,4 +1,4 @@
-package com.absurd.refreshandloadlayout;
+package com.aliletter.refreshandloadlayout;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

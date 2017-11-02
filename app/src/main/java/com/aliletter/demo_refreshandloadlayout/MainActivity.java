@@ -1,4 +1,4 @@
-package com.absurd.demo_refreshandloadlayout;
+package com.aliletter.demo_refreshandloadlayout;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,13 +6,10 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import com.absurd.refreshandloadlayout.OnRefreshAndLoadListener;
-import com.absurd.refreshandloadlayout.RefreshAndLoadingLayout;
+import com.aliletter.refreshandloadlayout.OnRefreshAndLoadListener;
+import com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout;
 
 import java.util.ArrayList;
 import java.util.List;

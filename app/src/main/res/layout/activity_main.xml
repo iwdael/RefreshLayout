@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.absurd.refreshandloadlayout.RefreshAndLoadingLayout
+    <com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -64,7 +64,7 @@
                 android:layout_height="1dp"
                 android:background="#ff0000"></View>
         </LinearLayout>
-    </com.absurd.refreshandloadlayout.RefreshAndLoadingLayout>
+    </com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout>
 
 
 </LinearLayout>

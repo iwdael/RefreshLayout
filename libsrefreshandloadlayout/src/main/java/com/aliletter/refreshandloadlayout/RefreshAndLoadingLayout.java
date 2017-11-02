@@ -1,6 +1,6 @@
 
 
-package com.absurd.refreshandloadlayout;
+package com.aliletter.refreshandloadlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,6 +17,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
 import android.widget.AbsListView;
+
 
 public class RefreshAndLoadingLayout extends ViewGroup {
 

@@ -1,4 +1,4 @@
-package com.absurd.refreshandloadlayout;
+package com.aliletter.refreshandloadlayout;
 
 import org.junit.Test;
 
