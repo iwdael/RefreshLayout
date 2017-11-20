@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RefreshAndLoadLayout.iml" filepath="$PROJECT_DIR$/RefreshAndLoadLayout.iml" />
-      <module fileurl="file://D:\AndroidApplication\Application\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" filepath="D:\AndroidApplication\Application\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\AndroidApplication\Application\RefreshAndLoadLayout\app\app.iml" filepath="D:\AndroidApplication\Application\RefreshAndLoadLayout\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libsrefreshandloadlayout/libsrefreshandloadlayout.iml" filepath="$PROJECT_DIR$/libsrefreshandloadlayout/libsrefreshandloadlayout.iml" />
-      <module fileurl="file://D:\AndroidApplication\Application\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" filepath="D:\AndroidApplication\Application\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" />
     </modules>
   </component>
 </project>
