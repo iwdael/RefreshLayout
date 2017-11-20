@@ -53,7 +53,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private long mTimeRefreshToNormal = 500;
     private long mTimeCancleRefresh = 500;
     private boolean mTouchEventInitial = true;
-
+    //当前是否在动画,拦截停止刷新过快，造成动画重叠
+    private boolean mCurrentAnim = false;
+    private boolean mContinueAnim = false;
 
     private enum STATUS {
         NORMAL, LOOSEN, REFRESHING
@@ -364,11 +366,33 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (mListener != null) {
             mListener.onNormal(mCurrentTopDragged);
         }
+        anim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                mCurrentAnim = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                mCurrentAnim = false;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                mCurrentAnim = false;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
         anim.start();
     }
 
     private void startRefresh() {
         mRefreshing = true;
+        mContinueAnim = false;
         mStatus = STATUS.REFRESHING;
         ValueAnimator anim;
         if (mCurrentTopDragged) {
@@ -388,10 +412,39 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (mListener != null) {
             mListener.onRefresh(mCurrentTopDragged);
         }
+        anim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+                mCurrentAnim = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                mCurrentAnim = false;
+                if (mContinueAnim) {
+                    mContinueAnim = false;
+                    stopRefresh();
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                mCurrentAnim = false;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
         anim.start();
     }
 
     public void stopRefresh() {
+        if (mCurrentAnim) {
+            mContinueAnim = true;
+            return;
+        }
         ValueAnimator anim;
         if (mCurrentTopDragged) {
             anim = ValueAnimator.ofInt(mTopDistanceToTriggerSync, 0);
@@ -411,11 +464,12 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-
+                mCurrentAnim = true;
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
+                mCurrentAnim = false;
                 mIsBeingDragged = false;
                 mRefreshing = false;
                 if (mListener != null) {
@@ -425,7 +479,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
             @Override
             public void onAnimationCancel(Animator animator) {
-
+                mCurrentAnim = false;
             }
 
             @Override
@@ -437,11 +491,12 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     }
 
     private void updateContentOffsetTop(float targetTop, boolean isTop) {
-        Log.v("RefreshAndLoadingLayout", "---------->>" + targetTop + "------------->>" + isTop);
+
         setTargetOffsetTopAndBottom((int) (targetTop - mTarget.getTop()), isTop);
     }
 
     private void setTargetOffsetTopAndBottom(int offset, boolean isTop) {
+        Log.v("RefreshAndLoadingLayout", "---------->>" + offset + "------------->>" + isTop);
         if (isTop) {
             mTopView.offsetTopAndBottom(offset);
             mTarget.offsetTopAndBottom(offset);

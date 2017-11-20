@@ -56,10 +56,8 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
             @Override
             public void run() {
                 mSwipeLayout.stopRefresh();
-                mHint.setText("下拉刷新");
-                mHinp.setText("下拉刷新");
             }
-        }, 2000);
+        }, 20);
     }
 
     @Override
