@@ -437,6 +437,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     }
 
     private void updateContentOffsetTop(float targetTop, boolean isTop) {
+        Log.v("RefreshAndLoadingLayout", "---------->>" + targetTop + "------------->>" + isTop);
         setTargetOffsetTopAndBottom((int) (targetTop - mTarget.getTop()), isTop);
     }
 
