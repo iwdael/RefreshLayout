@@ -50,10 +50,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private boolean mRefrshEnabled = true;
     private boolean mLoadEnabled = true;
     private long mTimeLooseToRefresh = 500;
-    private long mTimeRefreshToNormal =500;
+    private long mTimeRefreshToNormal = 500;
     private long mTimeCancleRefresh = 500;
     private boolean mTouchEventInitial = true;
-
 
 
     private enum STATUS {
@@ -193,7 +192,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (mRefreshing) {
             return false;
         }
-        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING  ) {
+        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
             if (canChildScrollUp() && canChildScrollDown())
                 return false;
         }
@@ -302,6 +301,13 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                             mStatus = STATUS.LOOSEN;
                             if (mListener != null) {
                                 mListener.onLoose(mCurrentTopDragged);
+                            }
+                        }
+                    } else {
+                        if (mStatus == STATUS.LOOSEN) {
+                            mStatus = STATUS.NORMAL;
+                            if (mListener != null) {
+                                mListener.onNormal(mCurrentTopDragged);
                             }
                         }
                     }
@@ -458,7 +464,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     newPointerIndex);
         }
     }
-
 
 
 }
