@@ -4,4 +4,5 @@
         <attr name="refreshEnabled" format="boolean"></attr>
         <attr name="loadEnabled" format="boolean" />
      </declare-styleable>
+
 </resources>
