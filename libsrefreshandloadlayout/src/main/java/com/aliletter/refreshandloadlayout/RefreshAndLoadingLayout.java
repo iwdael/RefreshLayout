@@ -2,12 +2,19 @@
 
 package com.aliletter.refreshandloadlayout;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.MotionEventCompat;
+import android.support.v4.view.NestedScrollingChild;
+import android.support.v4.view.NestedScrollingChildHelper;
+import android.support.v4.view.NestedScrollingParent;
+import android.support.v4.view.NestedScrollingParentHelper;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -19,159 +26,51 @@ import android.view.animation.Transformation;
 import android.widget.AbsListView;
 
 
-public class RefreshAndLoadingLayout extends ViewGroup {
-
-
-    private static final long RETURN_TO_ORIGINAL_POSITION_TIMEOUT = 300;
+public class RefreshAndLoadingLayout extends ViewGroup implements NestedScrollingParent, NestedScrollingChild {
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
-    private static final float MAX_SWIPE_DISTANCE_FACTOR = .6f;
-    private static final int REFRESH_TRIGGER_DISTANCE = 120;
     private static final int INVALID_POINTER = -1;
-
     private View mTarget;
-    private int mOriginalOffsetTop;
     private OnRefreshAndLoadListener mListener;
-    private int mFrom;
     private boolean mRefreshing = false;
     private int mTouchSlop;
-    private float mHeaderDistanceToTriggerSync = -1;
-    private float mBooterDistanceToTriggerSync = -1;
-    private int mMediumAnimationDuration;
-    private int mCurrentTargetOffsetTop;
-
+    private int mTopDistanceToTriggerSync = -1;
+    private int mBottomDistanceToTriggerSync = -1;
+    private int mCurrentTargetOffset;
     private float mInitialMotionY;
     private float mLastMotionY;
     private boolean mIsBeingDragged;
     private int mActivePointerId = INVALID_POINTER;
-
-
     private boolean mReturningToStart;
     private final DecelerateInterpolator mDecelerateInterpolator;
-    private static final int[] LAYOUT_ATTRS = new int[]{android.R.attr.enabled};
-
-    private View mHeaderView, mBooterView;
-    private int mHeaderHeight, mBooterHeight;
+    private View mTopView, mBottomView;
+    private int mTopHeight, mBottomHeight;
     private STATUS mStatus = STATUS.NORMAL;
     private boolean mDisable; // 用来控制控件是否允许滚动
-    private Boolean mCurrentIsHeaderrefresh = null;
+    private boolean mCurrentTopDragged = true;
     private boolean mRefrshEnabled = true;
     private boolean mLoadEnabled = true;
+    private long mTimeLooseToRefresh = 500;
+    private long mTimeRefreshToNormal =500;
+    private long mTimeCancleRefresh = 500;
+    private boolean mTouchEventInitial = true;
+
+    //meterial disign
+    private final NestedScrollingParentHelper mNestedScrollingParentHelper;
+    private final NestedScrollingChildHelper mNestedScrollingChildHelper;
+    private boolean mNestedScrollInProgress;
+    private float mTotalUnconsumed;
+    private boolean mUsingCustomStart;
+    private final int[] mParentScrollConsumed = new int[2];
+    private final int[] mParentOffsetInWindow = new int[2];
+
 
     private enum STATUS {
         NORMAL, LOOSEN, REFRESHING
     }
 
-    private final Animation mAnimateToStartPosition = new Animation() {
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            int targetTop = 0;
-            int offset = 0;
-            if (mCurrentIsHeaderrefresh == null) return;
-            if (mCurrentIsHeaderrefresh == true) {
-                if (mFrom != mOriginalOffsetTop) {
-                    targetTop = (mFrom + (int) ((mOriginalOffsetTop - mFrom) * interpolatedTime));
-                }
-                offset = targetTop - mTarget.getTop();
-                final int currentTop = mTarget.getTop();
-                if (offset + currentTop < 0) {
-                    offset = 0 - currentTop;
-                }
-            } else {
-                if (mFrom != mOriginalOffsetTop) {
-                    targetTop = (mFrom + (int) ((mOriginalOffsetTop - mFrom) * interpolatedTime));
-                }
-                offset = targetTop - mTarget.getTop();
-                final int currentTop = mTarget.getTop();
-                if (offset + currentTop > 0) {
-                    offset = currentTop;
-                }
-            }
-            setTargetOffsetTopAndBottom(offset, mCurrentIsHeaderrefresh);
-        }
-    };
-
-    private final Animation mAnimateToHeaderPosition = new Animation() {
-        @Override
-        public void applyTransformation(float interpolatedTime, Transformation t) {
-            int targetTop = 0;
-            int offset = 0;
-            if (mCurrentIsHeaderrefresh == true) {
-                if (mFrom != mHeaderHeight) {
-                    targetTop = (mFrom + (int) ((mHeaderHeight - mFrom) * interpolatedTime));
-                }
-                offset = targetTop - mTarget.getTop();
-                final int currentTop = mTarget.getTop();
-                if (offset + currentTop < 0) {
-                    offset = 0 - currentTop;
-                }
-            } else {
-                if (mFrom != -mBooterHeight) {
-                    targetTop = (mFrom + (int) ((-mBooterHeight - mFrom) * interpolatedTime));
-                }
-                offset = targetTop - mTarget.getTop();
-                final int currentTop = mTarget.getTop();
-                if (offset + currentTop > 0) {
-                    offset = currentTop;
-                }
-            }
-            setTargetOffsetTopAndBottom(offset, mCurrentIsHeaderrefresh);
-        }
-    };
-
-    private final AnimationListener mReturnToStartPositionListener = new BaseAnimationListener() {
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            mCurrentTargetOffsetTop = 0;
-            mStatus = STATUS.NORMAL;
-            mDisable = false;
-            if (mListener != null) {
-                mRefreshing = false;
-                if (mCurrentIsHeaderrefresh==null){return;}
-                mListener.onNormal(mCurrentIsHeaderrefresh);
-                mCurrentIsHeaderrefresh = null;
-            }
-        }
-    };
-
-    private final AnimationListener mReturnToHeaderPositionListener = new BaseAnimationListener() {
-        @Override
-        public void onAnimationEnd(Animation animation) {
-
-            mCurrentTargetOffsetTop = mHeaderHeight;
-            mStatus = STATUS.REFRESHING;
-        }
-    };
-
-    private final Runnable mReturnToStartPosition = new Runnable() {
-        @Override
-        public void run() {
-            mReturningToStart = true;
-            animateOffsetToStartPosition(mCurrentTargetOffsetTop + getPaddingTop(), mReturnToStartPositionListener);
-        }
-    };
-
-    private final Runnable mReturnToHeaderPosition = new Runnable() {
-        @Override
-        public void run() {
-            mReturningToStart = true;
-            animateOffsetToHeaderPosition(mCurrentTargetOffsetTop + getPaddingTop(), mReturnToHeaderPositionListener);
-        }
-    };
-
-
-    private final Runnable mCancel = new Runnable() {
-        @Override
-        public void run() {
-            mReturningToStart = true;
-            animateOffsetToStartPosition(mCurrentTargetOffsetTop + getPaddingTop(), mReturnToStartPositionListener);
-        }
-    };
-
-
     public RefreshAndLoadingLayout(Context context) {
         this(context, null);
     }
-
 
     public RefreshAndLoadingLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -179,12 +78,10 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     public RefreshAndLoadingLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mNestedScrollingParentHelper = new NestedScrollingParentHelper(this);
+        mNestedScrollingChildHelper = new NestedScrollingChildHelper(this);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        mMediumAnimationDuration = getResources().getInteger(android.R.integer.config_mediumAnimTime);
         mDecelerateInterpolator = new DecelerateInterpolator(DECELERATE_INTERPOLATION_FACTOR);
-        final TypedArray a = context.obtainStyledAttributes(attrs, LAYOUT_ATTRS);
-        setEnabled(a.getBoolean(0, true));
-        a.recycle();
         TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RefreshAndLoadingLayout, defStyleAttr, 0);
         mRefrshEnabled = ta.getBoolean(R.styleable.RefreshAndLoadingLayout_refreshEnabled, true);
         mLoadEnabled = ta.getBoolean(R.styleable.RefreshAndLoadingLayout_loadEnabled, true);
@@ -192,47 +89,10 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        removeCallbacks(mCancel);
-        removeCallbacks(mReturnToStartPosition);
-        removeCallbacks(mReturnToHeaderPosition);
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        removeCallbacks(mReturnToStartPosition);
-        removeCallbacks(mCancel);
-        removeCallbacks(mReturnToHeaderPosition);
-    }
-
-    private void animateOffsetToStartPosition(int from, AnimationListener listener) {
-        mFrom = from;
-        mAnimateToStartPosition.reset();
-        mAnimateToStartPosition.setDuration(mMediumAnimationDuration);
-        mAnimateToStartPosition.setAnimationListener(listener);
-        mAnimateToStartPosition.setInterpolator(mDecelerateInterpolator);
-        mTarget.startAnimation(mAnimateToStartPosition);
-
-    }
-
-    private void animateOffsetToHeaderPosition(int from, AnimationListener listener) {
-        mFrom = from;
-        mAnimateToHeaderPosition.reset();
-        mAnimateToHeaderPosition.setDuration(mMediumAnimationDuration);
-        mAnimateToHeaderPosition.setAnimationListener(listener);
-        mAnimateToHeaderPosition.setInterpolator(mDecelerateInterpolator);
-        mTarget.startAnimation(mAnimateToHeaderPosition);
-
-    }
-
 
     public void setOnRefreshListener(OnRefreshAndLoadListener listener) {
         mListener = listener;
     }
-
 
     public void setRefreshing(boolean refreshing) {
         if (mRefreshing != refreshing) {
@@ -246,8 +106,14 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     }
 
     private void ensureTarget() {
+        if (mTopView == null) {
+            mTopView = getChildAt(0);
+        }
+        if (mBottomView == null) {
+            mBottomView = getChildAt(2);
+        }
         if (mTarget == null) {
-            if (getChildCount() > 3 && !isInEditMode()) {
+            if (getChildCount() != 3 && !isInEditMode()) {
                 throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
             }
             mTarget = getChildAt(1);
@@ -259,28 +125,15 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     return mDisable;
                 }
             });
+        }
 
-            mOriginalOffsetTop = mTarget.getTop() + getPaddingTop();
-        }
-        if (mHeaderDistanceToTriggerSync == -1) {
-            if (getParent() != null && ((View) getParent()).getHeight() > 0) {
-                final DisplayMetrics metrics = getResources().getDisplayMetrics();
-                mHeaderDistanceToTriggerSync = (int) Math.min(((View) getParent()).getHeight() * MAX_SWIPE_DISTANCE_FACTOR, REFRESH_TRIGGER_DISTANCE * metrics.density);
-            }
-        }
-        if (mBooterDistanceToTriggerSync == -1) {
-            if (getParent() != null && ((View) getParent()).getHeight() > 0) {
-                final DisplayMetrics metrics = getResources().getDisplayMetrics();
-                mBooterDistanceToTriggerSync = (int) Math.min(((View) getParent()).getHeight() * MAX_SWIPE_DISTANCE_FACTOR, REFRESH_TRIGGER_DISTANCE * metrics.density);
-            }
-        }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         final int width = getMeasuredWidth();
         final int height = getMeasuredHeight();
-        if (getChildCount() == 0 || getChildCount() == 1) {
+        if (getChildCount() != 3) {
             return;
         }
         final View child = getChildAt(1);
@@ -289,42 +142,26 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         final int childWidth = width - getPaddingLeft() - getPaddingRight();
         final int childHeight = height - getPaddingTop() - getPaddingBottom();
         child.layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-        mHeaderView.layout(childLeft, childTop - mHeaderHeight, childLeft + childWidth, childTop);
-        mBooterView.layout(childLeft, child.getMeasuredHeight(), childLeft + childWidth, child.getMeasuredHeight() + mBooterHeight);
+        mTopView.layout(childLeft, childTop - mTopHeight, childLeft + childWidth, childTop);
+        mBottomView.layout(childLeft, child.getMeasuredHeight(), childLeft + childWidth, child.getMeasuredHeight() + mBottomHeight);
     }
 
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        if (getChildCount() <= 2) {
+        if (getChildCount() != 3 && !isInEditMode()) {
             throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
         }
-
-        if (getChildCount() > 3 && !isInEditMode()) {
-            throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
-        }
-
-        if (mHeaderView == null) {
-            mHeaderView = getChildAt(0);
-            measureChild(mHeaderView, widthMeasureSpec, heightMeasureSpec);
-            mHeaderHeight = mHeaderView.getMeasuredHeight();
-            mHeaderDistanceToTriggerSync = mHeaderHeight;
-        }
-
-        if (mBooterView == null) {
-            mBooterView = getChildAt(2);
-            measureChild(mBooterView, widthMeasureSpec, heightMeasureSpec);
-            mBooterHeight = mBooterView.getMeasuredHeight();
-            mBooterDistanceToTriggerSync = mBooterHeight;
-        }
-
-        getChildAt(1).measure(MeasureSpec.makeMeasureSpec(getMeasuredWidth() - getPaddingLeft() - getPaddingRight(), MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(getMeasuredHeight()
-                                - getPaddingTop() - getPaddingBottom(),
-                        MeasureSpec.EXACTLY));
+        ensureTarget();
+        measureChild(mTopView, widthMeasureSpec, heightMeasureSpec);
+        mTopHeight = mTopView.getMeasuredHeight();
+        mTopDistanceToTriggerSync = mTopHeight;
+        measureChild(mBottomView, widthMeasureSpec, heightMeasureSpec);
+        mBottomHeight = mBottomView.getMeasuredHeight();
+        mBottomDistanceToTriggerSync = -mBottomHeight;
+        mTarget.measure(MeasureSpec.makeMeasureSpec(getMeasuredWidth() - getPaddingLeft() - getPaddingRight(), MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(getMeasuredHeight() - getPaddingTop() - getPaddingBottom(), MeasureSpec.EXACTLY));
     }
-
 
     public boolean canChildScrollUp() {
         if (android.os.Build.VERSION.SDK_INT < 14) {
@@ -354,8 +191,10 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        if (mRefreshing) {
+            return true;
+        }
         ensureTarget();
-
         final int action = MotionEventCompat.getActionMasked(ev);
 
         if (mReturningToStart && action == MotionEvent.ACTION_DOWN) {
@@ -364,17 +203,16 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (mRefreshing) {
             return false;
         }
-        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
+        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING || mNestedScrollInProgress) {
             if (canChildScrollUp() && canChildScrollDown())
                 return false;
         }
-
-
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mLastMotionY = mInitialMotionY = ev.getY();
                 mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
                 mIsBeingDragged = false;
+                mTouchEventInitial = true;
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -425,77 +263,57 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if (mRefreshing) {
+            return true;
+        }
         final int action = MotionEventCompat.getActionMasked(ev);
-
         if (mReturningToStart && action == MotionEvent.ACTION_DOWN) {
             mReturningToStart = false;
         }
-
         if (!mRefrshEnabled && !mLoadEnabled) {
             return false;
         }
-
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mLastMotionY = mInitialMotionY = ev.getY();
                 mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
                 mIsBeingDragged = false;
+                mTouchEventInitial = true;
                 break;
 
             case MotionEvent.ACTION_MOVE:
                 final int pointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
-
                 if (pointerIndex < 0) {
                     return false;
                 }
 
                 final float y = ev.getY();
-
                 final float yDiff = (y - mInitialMotionY) / 2;
 
-                if (!mRefrshEnabled && yDiff > 0) {
-                    return false;
-                }
-                if (!mLoadEnabled && yDiff < 0) {
-                    return false;
+                if (mTouchEventInitial) {
+                    mCurrentTopDragged = yDiff > 0;
+                    mTouchEventInitial = false;
                 }
 
+                if (!mRefrshEnabled && mCurrentTopDragged) {
+                    return false;
+                }
+                if (!mLoadEnabled && !mCurrentTopDragged) {
+                    return false;
+                }
                 if (!mIsBeingDragged && Math.abs(yDiff) > mTouchSlop) {
                     mIsBeingDragged = true;
                 }
 
                 if (mIsBeingDragged) {
-                    if (mCurrentIsHeaderrefresh == null) {
-                        mCurrentIsHeaderrefresh = yDiff > 0;
-                    }
-                    updateContentOffsetTop((yDiff), mCurrentIsHeaderrefresh);
-                    if (yDiff > mHeaderDistanceToTriggerSync | yDiff < -mBooterDistanceToTriggerSync) {
+                    updateContentOffsetTop((yDiff), mCurrentTopDragged);
+                    if (yDiff > mTopDistanceToTriggerSync | yDiff < mBottomDistanceToTriggerSync) {
                         if (mStatus == STATUS.NORMAL) {
                             mStatus = STATUS.LOOSEN;
-                            if (mListener != null) mListener.onLoose(mCurrentIsHeaderrefresh);
+                            if (mListener != null) {
+                                mListener.onLoose(mCurrentTopDragged);
+                            }
                         }
-                    }
-//                    if (mCurrentIsHeaderrefresh) {
-//                        if (Math.abs(yDiff) > mHeaderDistanceToTriggerSync) {
-//                            if (mStatus == STATUS.NORMAL) {
-//                                mStatus = STATUS.LOOSEN;
-//                                if (mListener != null) {
-//                                    mListener.onLoose(mCurrentIsHeaderrefresh);
-//                                }
-//                            }
-//                        }
-//                    } else {
-//                        if (Math.abs(yDiff) > mBooterDistanceToTriggerSync) {
-//                            if (mStatus == STATUS.NORMAL) {
-//                                mStatus = STATUS.LOOSEN;
-//                                if (mListener != null) {
-//                                    mListener.onLoose(mCurrentIsHeaderrefresh);
-//                                }
-//                            }
-//                        }
-//                    }
-                    if (mLastMotionY > y && mTarget.getTop() == getPaddingTop()) {
-                        removeCallbacks(mCancel);
                     }
                     mLastMotionY = y;
                 }
@@ -516,14 +334,12 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 if (mStatus == STATUS.LOOSEN) {
                     startRefresh();
                 } else {
-                    updatePositionTimeout();
+                    cancleRefresh();
                 }
-
                 mIsBeingDragged = false;
                 mActivePointerId = INVALID_POINTER;
                 return false;
             case MotionEvent.ACTION_CANCEL:
-                updatePositionTimeout();
                 mIsBeingDragged = false;
                 mActivePointerId = INVALID_POINTER;
                 return false;
@@ -532,59 +348,113 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         return true;
     }
 
-    private void startRefresh() {
-        removeCallbacks(mCancel);
-        mReturnToHeaderPosition.run();
-        setRefreshing(true);
-        mDisable = true;
-
-        if (mListener != null) {
-            mListener.onRefresh(mCurrentIsHeaderrefresh);
+    private void cancleRefresh() {
+        mStatus = STATUS.NORMAL;
+        ValueAnimator anim;
+        if (mCurrentTopDragged) {
+            anim = ValueAnimator.ofInt(mCurrentTargetOffset, 0);
+        } else {
+            anim = ValueAnimator.ofInt(mCurrentTargetOffset, 0);
         }
+        anim.setDuration(mTimeCancleRefresh);
+        anim.setInterpolator(mDecelerateInterpolator);
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int obj = (int) valueAnimator.getAnimatedValue();
+                updateContentOffsetTop(obj, mCurrentTopDragged);
+            }
+        });
+        if (mListener != null) {
+            mListener.onNormal(mCurrentTopDragged);
+        }
+        anim.start();
+    }
+
+    private void startRefresh() {
+        mRefreshing = true;
+        mStatus = STATUS.REFRESHING;
+        ValueAnimator anim;
+        if (mCurrentTopDragged) {
+            anim = ValueAnimator.ofInt(mCurrentTargetOffset, mTopDistanceToTriggerSync);
+        } else {
+            anim = ValueAnimator.ofInt(mCurrentTargetOffset, mBottomDistanceToTriggerSync);
+        }
+        anim.setDuration(mTimeLooseToRefresh);
+        anim.setInterpolator(mDecelerateInterpolator);
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                int obj = (int) valueAnimator.getAnimatedValue();
+                updateContentOffsetTop(obj, mCurrentTopDragged);
+            }
+        });
+        if (mListener != null) {
+            mListener.onRefresh(mCurrentTopDragged);
+        }
+        anim.start();
     }
 
     public void stopRefresh() {
-        mReturnToStartPosition.run();
-    }
-
-    private void updateContentOffsetTop(float targetTop, boolean isHeader) {
-//        if (isHeader == true) {
-//            final int currentTop = mTarget.getTop();
-//            if (targetTop / 2 > mHeaderDistanceToTriggerSync) {
-//                targetTop = (int) mHeaderDistanceToTriggerSync + (int) (targetTop - mHeaderDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
-//            } else if (targetTop < 0) {
-//                targetTop = 0;
-//            }
-//            setTargetOffsetTopAndBottom(targetTop - currentTop, true);
-//        } else {
-//            final int currentTop = mTarget.getTop();
-//            if (Math.abs(targetTop)/2 > mBooterDistanceToTriggerSync) {
-//                targetTop = (int) -mBooterDistanceToTriggerSync + (int) (targetTop + mBooterDistanceToTriggerSync) / 2; // 超过触发松手刷新的距离后，就只显示滑动一半的距离，避免随手势拉动到最底部，用户体验不好
-//            } else if (targetTop > mTarget.getMeasuredHeight()) {
-//                targetTop = 0;
-//            }
-//            setTargetOffsetTopAndBottom(targetTop - currentTop, false);
-//        }
-        setTargetOffsetTopAndBottom((int) (targetTop - mTarget.getTop()), isHeader);
-    }
-
-    private void setTargetOffsetTopAndBottom(int offset, boolean isHeader) {
-        if (isHeader == true) {
-            mHeaderView.offsetTopAndBottom(offset);
-            mTarget.offsetTopAndBottom(offset);
-            mCurrentTargetOffsetTop = mTarget.getTop();
-            invalidate();
+        ValueAnimator anim;
+        if (mCurrentTopDragged) {
+            anim = ValueAnimator.ofInt(mTopDistanceToTriggerSync, 0);
         } else {
-            mBooterView.offsetTopAndBottom(offset);
-            mTarget.offsetTopAndBottom(offset);
-            mCurrentTargetOffsetTop = mTarget.getTop();
-            invalidate();
+            anim = ValueAnimator.ofInt(mBottomDistanceToTriggerSync, 0);
         }
+        anim.setDuration(mTimeRefreshToNormal);
+        anim.setInterpolator(mDecelerateInterpolator);
+        anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                mStatus = STATUS.NORMAL;
+                int obj = (int) valueAnimator.getAnimatedValue();
+                updateContentOffsetTop(obj, mCurrentTopDragged);
+            }
+        });
+        anim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                mIsBeingDragged = false;
+                mRefreshing = false;
+                if (mListener != null) {
+                    mListener.onNormal(mCurrentTopDragged);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animator) {
+
+            }
+        });
+        anim.start();
     }
 
-    private void updatePositionTimeout() {
-        removeCallbacks(mCancel);
-        postDelayed(mCancel, RETURN_TO_ORIGINAL_POSITION_TIMEOUT);
+    private void updateContentOffsetTop(float targetTop, boolean isTop) {
+        setTargetOffsetTopAndBottom((int) (targetTop - mTarget.getTop()), isTop);
+    }
+
+    private void setTargetOffsetTopAndBottom(int offset, boolean isTop) {
+        if (isTop) {
+            mTopView.offsetTopAndBottom(offset);
+            mTarget.offsetTopAndBottom(offset);
+            mCurrentTargetOffset = mTarget.getTop();
+        } else {
+            mBottomView.offsetTopAndBottom(offset);
+            mTarget.offsetTopAndBottom(offset);
+            mCurrentTargetOffset = mTarget.getTop();
+        }
+        invalidate();
     }
 
     private void onSecondaryPointerUp(MotionEvent ev) {
@@ -599,18 +469,138 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
     }
 
+    private void nestedScroll(float mTotalUnconsumed) {
 
-    private class BaseAnimationListener implements AnimationListener {
-        @Override
-        public void onAnimationStart(Animation animation) {
+    }
+
+    @Override
+    public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
+        return isEnabled() && !mReturningToStart && !mRefreshing
+                && (nestedScrollAxes & ViewCompat.SCROLL_AXIS_VERTICAL) != 0;
+    }
+
+    @Override
+    public void onNestedScrollAccepted(View child, View target, int axes) {
+        mNestedScrollingParentHelper.onNestedScrollAccepted(child, target, axes);
+        startNestedScroll(axes & ViewCompat.SCROLL_AXIS_VERTICAL);
+        mTotalUnconsumed = 0;
+        mNestedScrollInProgress = true;
+    }
+
+    @Override
+    public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
+        if (dy > 0 && mTotalUnconsumed > 0) {
+            if (dy > mTotalUnconsumed) {
+                consumed[1] = dy - (int) mTotalUnconsumed;
+                mTotalUnconsumed = 0;
+            } else {
+                mTotalUnconsumed -= dy;
+                consumed[1] = dy;
+            }
+            //  moveSpinner(mTotalUnconsumed);
         }
 
-        @Override
-        public void onAnimationEnd(Animation animation) {
+        if (mUsingCustomStart && dy > 0 && mTotalUnconsumed == 0
+                && Math.abs(dy - consumed[1]) > 0) {
+
+            mTopView.setVisibility(GONE);
+            mBottomView.setVisibility(GONE);
+
         }
 
-        @Override
-        public void onAnimationRepeat(Animation animation) {
+        // Now let our nested parent consume the leftovers
+        final int[] parentConsumed = mParentScrollConsumed;
+        if (dispatchNestedPreScroll(dx - consumed[0], dy - consumed[1], parentConsumed, null)) {
+            consumed[0] += parentConsumed[0];
+            consumed[1] += parentConsumed[1];
         }
     }
+
+    @Override
+    public int getNestedScrollAxes() {
+        return mNestedScrollingParentHelper.getNestedScrollAxes();
+    }
+
+    @Override
+    public void onStopNestedScroll(View target) {
+        mNestedScrollingParentHelper.onStopNestedScroll(target);
+        mNestedScrollInProgress = false;
+        if (mTotalUnconsumed > 0) {
+            mTopView.setVisibility(VISIBLE);
+            mBottomView.setVisibility(VISIBLE);
+            mTotalUnconsumed = 0;
+        }
+        stopNestedScroll();
+    }
+
+    @Override
+    public void onNestedScroll(final View target, final int dxConsumed, final int dyConsumed, final int dxUnconsumed, final int dyUnconsumed) {
+        dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, mParentOffsetInWindow);
+        final int dy = dyUnconsumed + mParentOffsetInWindow[1];
+        if (dy < 0 && !canChildScrollUp()) {
+            mTotalUnconsumed += Math.abs(dy);
+
+            nestedScroll(mTotalUnconsumed);
+        }
+    }
+
+
+    @Override
+    public void setNestedScrollingEnabled(boolean enabled) {
+        mNestedScrollingChildHelper.setNestedScrollingEnabled(enabled);
+    }
+
+    @Override
+    public boolean isNestedScrollingEnabled() {
+        return mNestedScrollingChildHelper.isNestedScrollingEnabled();
+    }
+
+    @Override
+    public boolean startNestedScroll(int axes) {
+        return mNestedScrollingChildHelper.startNestedScroll(axes);
+    }
+
+    @Override
+    public void stopNestedScroll() {
+        mNestedScrollingChildHelper.stopNestedScroll();
+    }
+
+    @Override
+    public boolean hasNestedScrollingParent() {
+        return mNestedScrollingChildHelper.hasNestedScrollingParent();
+    }
+
+    @Override
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int[] offsetInWindow) {
+        return mNestedScrollingChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed,
+                dxUnconsumed, dyUnconsumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed, int[] offsetInWindow) {
+        return mNestedScrollingChildHelper.dispatchNestedPreScroll(
+                dx, dy, consumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
+        return dispatchNestedPreFling(velocityX, velocityY);
+    }
+
+    @Override
+    public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
+        return dispatchNestedFling(velocityX, velocityY, consumed);
+    }
+
+    @Override
+    public boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed) {
+        return mNestedScrollingChildHelper.dispatchNestedFling(velocityX, velocityY, consumed);
+    }
+
+    @Override
+    public boolean dispatchNestedPreFling(float velocityX, float velocityY) {
+        return mNestedScrollingChildHelper.dispatchNestedPreFling(velocityX, velocityY);
+    }
+
+
 }

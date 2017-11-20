@@ -59,7 +59,7 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
                 mHint.setText("下拉刷新");
                 mHinp.setText("下拉刷新");
             }
-        }, 500);
+        }, 2000);
     }
 
     @Override
