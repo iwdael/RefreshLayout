@@ -3,6 +3,11 @@
     <declare-styleable name="RefreshAndLoadingLayout">
         <attr name="refreshEnabled" format="boolean"></attr>
         <attr name="loadEnabled" format="boolean" />
-     </declare-styleable>
+        <attr name="looseHeight" format="dimension" />
+        <attr name="refreshTime" format="integer" />
+        <attr name="cancelTime" format="integer" />
+        <attr name="returnTime" format="integer" />
+
+    </declare-styleable>
 
 </resources>

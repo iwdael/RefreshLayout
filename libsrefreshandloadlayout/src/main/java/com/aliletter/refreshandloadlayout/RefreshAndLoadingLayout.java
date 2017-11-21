@@ -7,22 +7,13 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.NestedScrollingChild;
-import android.support.v4.view.NestedScrollingChildHelper;
-import android.support.v4.view.NestedScrollingParent;
-import android.support.v4.view.NestedScrollingParentHelper;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Transformation;
 import android.widget.AbsListView;
 
 
@@ -49,9 +40,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     private boolean mCurrentTopDragged = true;
     private boolean mRefrshEnabled = true;
     private boolean mLoadEnabled = true;
-    private long mTimeLooseToRefresh = 500;
-    private long mTimeRefreshToNormal = 500;
-    private long mTimeCancleRefresh = 500;
+    private int mTimeLooseToRefresh = 500;
+    private int mTimeRefreshToNormal = 500;
+    private int mTimeCancleRefresh = 500;
     private boolean mTouchEventInitial = true;
     //当前是否在动画,拦截停止刷新过快，造成动画重叠
     private boolean mCurrentAnim = false;
@@ -76,6 +67,10 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         TypedArray ta = context.getTheme().obtainStyledAttributes(attrs, R.styleable.RefreshAndLoadingLayout, defStyleAttr, 0);
         mRefrshEnabled = ta.getBoolean(R.styleable.RefreshAndLoadingLayout_refreshEnabled, true);
         mLoadEnabled = ta.getBoolean(R.styleable.RefreshAndLoadingLayout_loadEnabled, true);
+        mTimeRefreshToNormal = ta.getInt(R.styleable.RefreshAndLoadingLayout_refreshTime, 500);
+        mTimeLooseToRefresh = ta.getInt(R.styleable.RefreshAndLoadingLayout_returnTime, 500);
+        mTimeCancleRefresh = ta.getInt(R.styleable.RefreshAndLoadingLayout_cancelTime, 500);
+
         ta.recycle();
 
     }
@@ -85,12 +80,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         mListener = listener;
     }
 
-    public void setRefreshing(boolean refreshing) {
-        if (mRefreshing != refreshing) {
-            ensureTarget();
-            mRefreshing = refreshing;
-        }
-    }
 
     public boolean isRefreshing() {
         return mRefreshing;
@@ -391,6 +380,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     }
 
     private void startRefresh() {
+        if (mListener != null) {
+            mListener.onRefresh(mCurrentTopDragged);
+        }
         mRefreshing = true;
         mContinueAnim = false;
         mStatus = STATUS.REFRESHING;
@@ -409,9 +401,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 updateContentOffsetTop(obj, mCurrentTopDragged);
             }
         });
-        if (mListener != null) {
-            mListener.onRefresh(mCurrentTopDragged);
-        }
+
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
@@ -491,12 +481,11 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     }
 
     private void updateContentOffsetTop(float targetTop, boolean isTop) {
-
         setTargetOffsetTopAndBottom((int) (targetTop - mTarget.getTop()), isTop);
     }
 
     private void setTargetOffsetTopAndBottom(int offset, boolean isTop) {
-        Log.v("RefreshAndLoadingLayout", "---------->>" + offset + "------------->>" + isTop);
+
         if (isTop) {
             mTopView.offsetTopAndBottom(offset);
             mTarget.offsetTopAndBottom(offset);

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RefreshAndLoadLayout</string>
+    <string name="load_loose">松手加载</string>
+    <string name="refresh_normal">下拉刷新</string>
+    <string name="load_normal">上拉加载</string>
+    <string name="refresh_loose">松手刷新</string>
+    <string name="refreshing">刷新中啊</string>
+    <string name="loading">加载中啊</string>
 </resources>

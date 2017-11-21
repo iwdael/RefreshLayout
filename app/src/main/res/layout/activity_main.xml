@@ -10,60 +10,12 @@
         android:layout_height="match_parent"
         android:scrollbars="none">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ff0000"></View>
-
-            <TextView
-
-                android:id="@+id/hint"
-                android:layout_width="match_parent"
-                android:layout_height="78dp"
-                android:gravity="center"
-                android:text="下拉刷新"
-                android:textColor="#000"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ff0000"></View>
-        </LinearLayout>
+        <include layout="@layout/include_refreshandloadlayout_refresh" />
 
         <include layout="@layout/include_recyclerview" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:gravity="center"
-            android:orientation="vertical">
+        <include layout="@layout/include_refreshandloadlayout_load" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ff0000"></View>
-
-            <TextView
-                android:id="@+id/hinp"
-                android:layout_width="match_parent"
-                android:layout_height="78dp"
-                android:gravity="center"
-                android:text="上拉加载"
-                android:textColor="#000"
-                android:textSize="20sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#ff0000"></View>
-        </LinearLayout>
     </com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout>
 
 

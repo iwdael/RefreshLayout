@@ -15,14 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends Activity implements OnRefreshAndLoadListener {
+public class MainActivity extends Activity {
     private RefreshAndLoadingLayout mSwipeLayout;
-    private TextView mHint, mHinp;
     private RecyclerView rc_view;
     RcAdapter adapter;
     List<String> data = new ArrayList<>();
-    int page;
-    boolean isRefresh = false;
+    RefreshAndLoadListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,49 +31,28 @@ public class MainActivity extends Activity implements OnRefreshAndLoadListener {
         rc_view.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rc_view.setAdapter(adapter);
         mSwipeLayout = (RefreshAndLoadingLayout) findViewById(R.id.swipe_container);
+        listener = new RefreshAndLoadListener(this) {
+            @Override
+            protected void Refresh(int page) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        listener.stopRefresh(mSwipeLayout, new endListener() {
+                            @Override
+                            public void onEnd(boolean isHeader) {
 
-        mHint = (TextView) findViewById(R.id.hint);
-        mHinp = (TextView) findViewById(R.id.hinp);
-        mSwipeLayout.setOnRefreshListener(this);
-
-        data.clear();
-        page = 1;
-
-        for (int i = 0; i < 20; i++) {
-            data.add("------" + (page * 10 + i) + "--------");
+                            }
+                        });
+                    }
+                }, 2000);
+            }
+        };
+        mSwipeLayout.setOnRefreshListener(listener);
+        for (int i = 0; i < 2; i++) {
+            data.add("------" + (1 * 10 + i) + "--------");
         }
         adapter.bindData(data);
     }
 
-    @Override
-    public void onRefresh(boolean mCurrent) {
-        Log.v("TAG","------onRefresh----->>"+mCurrent);
-        mHint.setText("正在刷新，请等待");
-        mHinp.setText("正在刷新，请等待");
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeLayout.stopRefresh();
-            }
-        }, 20);
-    }
 
-    @Override
-    public void onNormal(boolean mCurrent) {
-        Log.v("TAG","------onNormal----->>"+mCurrent);
-        if (mCurrent)
-            mHint.setText("下拉刷新");
-        else
-            mHinp.setText("下拉刷新");
-
-    }
-
-    @Override
-    public void onLoose(boolean mCurrent) {
-        Log.v("TAG","------onLoose----->>"+mCurrent);
-        if (mCurrent)
-            mHint.setText("松手刷新");
-        else
-            mHinp.setText("松手刷新");
-    }
 }
