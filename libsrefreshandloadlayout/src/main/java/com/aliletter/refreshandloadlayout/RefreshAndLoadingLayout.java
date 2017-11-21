@@ -287,9 +287,10 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
                 if (mIsBeingDragged) {
                     updateContentOffsetTop((yDiff), mCurrentTopDragged);
-                    if (yDiff > mTopDistanceToTriggerSync | yDiff < mBottomDistanceToTriggerSync) {
+                    if ((yDiff > mTopDistanceToTriggerSync & mCurrentTopDragged) | (yDiff < mBottomDistanceToTriggerSync & (!mCurrentTopDragged))) {
                         if (mStatus == STATUS.NORMAL) {
                             mStatus = STATUS.LOOSEN;
+                          //  Notes.getInstence().register(this).logger("------------mStatus == STATUS.NORMAL----------------->>" + mCurrentTopDragged);
                             if (mListener != null) {
                                 mListener.onLoose(mCurrentTopDragged);
                             }
@@ -297,7 +298,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     } else {
                         if (mStatus == STATUS.LOOSEN) {
                             mStatus = STATUS.NORMAL;
+                        //    Notes.getInstence().register(this).logger("------------mStatus == STATUS.LOOSEN----------------->>" + mCurrentTopDragged);
                             if (mListener != null) {
+                           //     Notes.getInstence().register(this).logger("--------onNormal -----");
                                 mListener.onNormal(mCurrentTopDragged);
                             }
                         }
@@ -336,6 +339,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     }
 
     private void cancleRefresh() {
+        mCurrentAnim = true;
         mStatus = STATUS.NORMAL;
         ValueAnimator anim;
         if (mCurrentTopDragged) {
@@ -358,11 +362,13 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-                mCurrentAnim = true;
+           //     Notes.getInstence().register(this).logger("cancleRefresh----onAnimationStart--->>");
+
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
+          //      Notes.getInstence().register(this).logger("cancleRefresh----onAnimationEnd--->>");
                 mCurrentAnim = false;
             }
 
@@ -380,12 +386,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     }
 
     private void startRefresh() {
-        if (mListener != null) {
-            mListener.onRefresh(mCurrentTopDragged);
-        }
-        mRefreshing = true;
-        mContinueAnim = false;
-        mStatus = STATUS.REFRESHING;
+
+      //  Notes.getInstence().register(this).logger("--------startRefresh-------------->>" + mCurrentTopDragged);
+
         ValueAnimator anim;
         if (mCurrentTopDragged) {
             anim = ValueAnimator.ofInt(mCurrentTargetOffset, mTopDistanceToTriggerSync);
@@ -401,15 +404,19 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                 updateContentOffsetTop(obj, mCurrentTopDragged);
             }
         });
-
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
+            //    Notes.getInstence().register(this).logger("startRefresh----onAnimationStart--->>");
                 mCurrentAnim = true;
+                mRefreshing = true;
+                mContinueAnim = false;
+                mStatus = STATUS.REFRESHING;
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
+          //      Notes.getInstence().register(this).logger("startRefresh----onAnimationEnd--->>");
                 mCurrentAnim = false;
                 if (mContinueAnim) {
                     mContinueAnim = false;
@@ -428,11 +435,17 @@ public class RefreshAndLoadingLayout extends ViewGroup {
             }
         });
         anim.start();
+        if (mListener != null) {
+            mListener.onRefresh(mCurrentTopDragged);
+        }
     }
 
     public void stopRefresh() {
+
+   //     Notes.getInstence().register(this).logger("------stopRefresh------");
         if (mCurrentAnim) {
             mContinueAnim = true;
+         //   Notes.getInstence().register(this).logger("------stopRefresh-----mContinueAnim->>" + true);
             return;
         }
         ValueAnimator anim;
@@ -454,11 +467,13 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
+              //  Notes.getInstence().register(this).logger("stopRefresh----onAnimationStart--->>");
                 mCurrentAnim = true;
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
+            //    Notes.getInstence().register(this).logger("stopRefresh----onAnimationEnd--->>");
                 mCurrentAnim = false;
                 mIsBeingDragged = false;
                 mRefreshing = false;
