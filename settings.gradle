@@ -1,1 +1,1 @@
-include ':app', ':libsrefreshandloadlayout'
+include ':example', ':libsrefreshandloadlayout'

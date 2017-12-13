@@ -169,6 +169,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
     }
 
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (mRefreshing) {
@@ -180,12 +181,11 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         if (mReturningToStart && action == MotionEvent.ACTION_DOWN) {
             mReturningToStart = false;
         }
-        if (mRefreshing) {
+        if (!isEnabled() || mReturningToStart) {
             return false;
         }
-        if (!isEnabled() || mReturningToStart || canChildScrollUp() || canChildScrollDown() || mStatus == STATUS.REFRESHING) {
-            if (canChildScrollUp() && canChildScrollDown())
-                return false;
+        if (canChildScrollUp() && canChildScrollDown()) {
+            return false;
         }
         switch (action) {
             case MotionEvent.ACTION_DOWN:
@@ -204,7 +204,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     if (ev.getY() - mLastMotionY > 0)
                         return false;
                 }
-
                 if (mActivePointerId == INVALID_POINTER) {
                     return false;
                 }
@@ -234,11 +233,6 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
 
         return mIsBeingDragged;
-    }
-
-    @Override
-    public void requestDisallowInterceptTouchEvent(boolean b) {
-
     }
 
     @Override
@@ -290,7 +284,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     if ((yDiff > mTopDistanceToTriggerSync & mCurrentTopDragged) | (yDiff < mBottomDistanceToTriggerSync & (!mCurrentTopDragged))) {
                         if (mStatus == STATUS.NORMAL) {
                             mStatus = STATUS.LOOSEN;
-                          //  Notes.getInstence().register(this).logger("------------mStatus == STATUS.NORMAL----------------->>" + mCurrentTopDragged);
+                            //  Notes.getInstence().register(this).logger("------------mStatus == STATUS.NORMAL----------------->>" + mCurrentTopDragged);
                             if (mListener != null) {
                                 mListener.onLoose(mCurrentTopDragged);
                             }
@@ -298,9 +292,9 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     } else {
                         if (mStatus == STATUS.LOOSEN) {
                             mStatus = STATUS.NORMAL;
-                        //    Notes.getInstence().register(this).logger("------------mStatus == STATUS.LOOSEN----------------->>" + mCurrentTopDragged);
+                            //    Notes.getInstence().register(this).logger("------------mStatus == STATUS.LOOSEN----------------->>" + mCurrentTopDragged);
                             if (mListener != null) {
-                           //     Notes.getInstence().register(this).logger("--------onNormal -----");
+                                //     Notes.getInstence().register(this).logger("--------onNormal -----");
                                 mListener.onNormal(mCurrentTopDragged);
                             }
                         }
@@ -362,13 +356,13 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-           //     Notes.getInstence().register(this).logger("cancleRefresh----onAnimationStart--->>");
+                //     Notes.getInstence().register(this).logger("cancleRefresh----onAnimationStart--->>");
 
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
-          //      Notes.getInstence().register(this).logger("cancleRefresh----onAnimationEnd--->>");
+                //      Notes.getInstence().register(this).logger("cancleRefresh----onAnimationEnd--->>");
                 mCurrentAnim = false;
             }
 
@@ -387,7 +381,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     private void startRefresh() {
 
-      //  Notes.getInstence().register(this).logger("--------startRefresh-------------->>" + mCurrentTopDragged);
+        //  Notes.getInstence().register(this).logger("--------startRefresh-------------->>" + mCurrentTopDragged);
 
         ValueAnimator anim;
         if (mCurrentTopDragged) {
@@ -407,7 +401,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-            //    Notes.getInstence().register(this).logger("startRefresh----onAnimationStart--->>");
+                //    Notes.getInstence().register(this).logger("startRefresh----onAnimationStart--->>");
                 mCurrentAnim = true;
                 mRefreshing = true;
                 mContinueAnim = false;
@@ -416,7 +410,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-          //      Notes.getInstence().register(this).logger("startRefresh----onAnimationEnd--->>");
+                //      Notes.getInstence().register(this).logger("startRefresh----onAnimationEnd--->>");
                 mCurrentAnim = false;
                 if (mContinueAnim) {
                     mContinueAnim = false;
@@ -442,10 +436,10 @@ public class RefreshAndLoadingLayout extends ViewGroup {
 
     public void stopRefresh() {
 
-   //     Notes.getInstence().register(this).logger("------stopRefresh------");
+        //     Notes.getInstence().register(this).logger("------stopRefresh------");
         if (mCurrentAnim) {
             mContinueAnim = true;
-         //   Notes.getInstence().register(this).logger("------stopRefresh-----mContinueAnim->>" + true);
+            //   Notes.getInstence().register(this).logger("------stopRefresh-----mContinueAnim->>" + true);
             return;
         }
         ValueAnimator anim;
@@ -467,13 +461,13 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         anim.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-              //  Notes.getInstence().register(this).logger("stopRefresh----onAnimationStart--->>");
+                //  Notes.getInstence().register(this).logger("stopRefresh----onAnimationStart--->>");
                 mCurrentAnim = true;
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
-            //    Notes.getInstence().register(this).logger("stopRefresh----onAnimationEnd--->>");
+                //    Notes.getInstence().register(this).logger("stopRefresh----onAnimationEnd--->>");
                 mCurrentAnim = false;
                 mIsBeingDragged = false;
                 mRefreshing = false;

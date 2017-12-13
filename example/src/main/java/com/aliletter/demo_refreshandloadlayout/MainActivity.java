@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
             }
         };
         mSwipeLayout.setOnRefreshListener(listener);
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 15; i++) {
             data.add("------" + (1 * 10 + i) + "--------");
         }
         adapter.bindData(data);
