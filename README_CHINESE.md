@@ -1,7 +1,7 @@
 # RefreshAndLoadLayout  [![](https://jitpack.io/v/aliletter/refreshandloadlayout.svg)](https://jitpack.io/#aliletter/refreshandloadlayout)
-Pull-up and pull-down loads are the most common data update features in the list. RefreshAndLoadLayout not only implements these functions, but also provides developers with three interfaces to achieve the appropriate load transition.[中文文档](https://github.com/aliletter/RefreshAndLoadLayout/blob/master/README_CHINESE.md)
-## Instruction
-RefreshAndLoadLayout provides three interfaces to the user: onRefresh, onNormal, onLoose. Corresponding function is to start refreshing, stop refreshing, let go refresh. In the layout, it must have three child controls, the first for the head refresh control, the second for the content area, and the third for the tail load control.
+上拉刷新和下拉加载是列表中最常见的数据更新功能。RefreshAndLoadLayout不仅实现了这些功能，还为开发者提供了三个接口来实现相应的加载过渡效果。
+## 使用说明
+RefreshAndLoadLayout为使用者提供了三个接口，分别是onRefresh, onNormal, onLoose。对应的功能是开始刷新，停止刷新，松手刷新。在布局中，它必须有三个子控件，第一个为头部刷新控件，第二个为内容区域，第三个为尾部加载控件。
 ### Sample Code
 ```java
 public class MainActivity extends Activity implements RefreshAndLoadingLayout.OnRefreshListener {
@@ -111,10 +111,10 @@ public class MainActivity extends Activity implements RefreshAndLoadingLayout.On
     </com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout>
 </LinearLayout>
 ```
-## How to
-To get a Git project into your build:
-### Step 1. Add the JitPack repository to your build file
-Add it in your root build.gradle at the end of repositories.[click here for details](https://github.com/aliletter/CarouselBanner/blob/master/root_build.gradle.png)
+## 如何配置
+将本仓库引入你的项目:
+### Step 1. 添加JitPack仓库到Build文件
+合并以下代码到项目根目录下的build.gradle文件的repositories尾。[点击查看详情](https://github.com/aliletter/CarouselBanner/blob/master/root_build.gradle.png)
 
 	allprojects {
 		repositories {
@@ -123,15 +123,15 @@ Add it in your root build.gradle at the end of repositories.[click here for deta
 		}
 	}
   
-### Step 2. Add the dependency
-Add it in your application module build.gradle at the end of dependencies where you want to use.   [click here for details](https://github.com/aliletter/CarouselBanner/blob/master/application_build.gradle.png)
+### Step 2. 添加依赖
+合并以下代码到需要使用的application Module的dependencies尾。[点击查看详情](https://github.com/aliletter/CarouselBanner/blob/master/application_build.gradle.png)
 ```Java
 	dependencies {
 	  ...
-          compile 'com.github.aliletter:refreshandloadlayout:v1.2.2'
+          compile 'com.github.aliletter:refreshandloadlayout:v1.2.2'
 	}
-```	
+```  
 ## Thank you for your browsing
-If you have any questions, please join the QQ group. I will do my best to answer it for you. Welcome to star and fork this repository, alse follow me.
+如果你有任何疑问，请加入QQ群，我将竭诚为你解答。欢迎Star和Fork本仓库，当然也欢迎你关注我。
 <br>
 ![Image Text](https://github.com/aliletter/CarouselBanner/blob/master/qq_group.png)
