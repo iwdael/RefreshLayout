@@ -83,11 +83,11 @@ RefreshAndLoadingLayout must hava three child only.
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.absurd.library.RefreshAndLoadingLayout
+    <com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-	app:loadEnabled="false"
+	    app:loadEnabled="false"
         app:refreshEnabled="false"
         android:scrollbars="none">
 
@@ -129,7 +129,7 @@ RefreshAndLoadingLayout must hava three child only.
                 android:textSize="20sp" />
 
         </LinearLayout>
-    </com.absurd.library.RefreshAndLoadingLayout>
+    </com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout>
 
 
 </LinearLayout>

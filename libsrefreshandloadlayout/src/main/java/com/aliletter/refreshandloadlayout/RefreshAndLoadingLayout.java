@@ -94,7 +94,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
         }
         if (mTarget == null) {
             if (getChildCount() != 3 && !isInEditMode()) {
-                throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
+                throw new IllegalStateException("RefreshAndLoadingLayout can only host three children");
             }
             mTarget = getChildAt(1);
 
@@ -130,7 +130,7 @@ public class RefreshAndLoadingLayout extends ViewGroup {
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (getChildCount() != 3 && !isInEditMode()) {
-            throw new IllegalStateException("RefreshAndLoadLayout can only host three children");
+            throw new IllegalStateException("RefreshAndLoadingLayout can only host three children");
         }
         ensureTarget();
         measureChild(mTopView, widthMeasureSpec, heightMeasureSpec);
@@ -292,10 +292,8 @@ public class RefreshAndLoadingLayout extends ViewGroup {
                     } else {
                         if (mStatus == STATUS.LOOSEN) {
                             mStatus = STATUS.NORMAL;
-                            //    Notes.getInstence().register(this).logger("------------mStatus == STATUS.LOOSEN----------------->>" + mCurrentTopDragged);
                             if (mListener != null) {
-                                //     Notes.getInstence().register(this).logger("--------onNormal -----");
-                                mListener.onNormal(mCurrentTopDragged);
+                                 mListener.onNormal(mCurrentTopDragged);
                             }
                         }
                     }
