@@ -1,4 +1,4 @@
-package com.aliletter.demo_refreshandloadlayout;
+package com.blackchopper.demo_refreshandloadlayout;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Author: mr-absurd
- * Github: http://github.com/mr-absurd
- * Data: 2017/10/6.
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project :
  */
-
 public class RcAdapter extends RecyclerView.Adapter<RcViewHolder> {
     List<String> data = new ArrayList<>();
 

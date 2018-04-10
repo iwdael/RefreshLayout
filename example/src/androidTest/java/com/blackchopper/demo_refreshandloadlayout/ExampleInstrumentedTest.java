@@ -1,4 +1,4 @@
-package com.aliletter.demo_refreshandloadlayout;
+package com.blackchopper.demo_refreshandloadlayout;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout
+    <com.blackchopper.refreshandloadlayout.RefreshAndLoadingLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +16,7 @@
 
         <include layout="@layout/include_refreshandloadlayout_load" />
 
-    </com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout>
+    </com.blackchopper.refreshandloadlayout.RefreshAndLoadingLayout>
 
 
 </LinearLayout>

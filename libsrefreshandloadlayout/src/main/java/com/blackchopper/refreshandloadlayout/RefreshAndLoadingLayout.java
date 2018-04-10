@@ -1,6 +1,6 @@
 
 
-package com.aliletter.refreshandloadlayout;
+package com.blackchopper.refreshandloadlayout;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -16,7 +16,12 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 
-
+/**
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project : RefreshAndLoadingLayout
+ */
 public class RefreshAndLoadingLayout extends ViewGroup {
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
     private static final int INVALID_POINTER = -1;

@@ -1,4 +1,4 @@
-package com.aliletter.demo_refreshandloadlayout;
+package com.blackchopper.demo_refreshandloadlayout;
 
 import android.app.Activity;
 import android.view.View;
@@ -7,21 +7,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aliletter.refreshandloadlayout.OnRefreshAndLoadListener;
-import com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout;
+import com.blackchopper.refreshandloadlayout.OnRefreshAndLoadListener;
+import com.blackchopper.refreshandloadlayout.RefreshAndLoadingLayout;
 
 
 import java.util.List;
 
 /**
- * Author: aliletter
- * Github: http://github.com/aliletter
- * Data: 2017/10/7.
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project :
  */
-
 public abstract class RefreshAndLoadListener implements OnRefreshAndLoadListener {
     protected View view;
     public ImageView iv_refresh;

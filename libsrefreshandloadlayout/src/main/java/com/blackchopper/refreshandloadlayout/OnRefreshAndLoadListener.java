@@ -1,11 +1,11 @@
-package com.aliletter.refreshandloadlayout;
+package com.blackchopper.refreshandloadlayout;
 
 /**
- * Created by 段泽全 on 2017/10/2.
- * Github：https://github.com/mr-absurd
- * Emile:4884280@qq.com
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project :
  */
-
 public interface OnRefreshAndLoadListener {
     void onNormal(boolean mCurrentIsHeader);
 

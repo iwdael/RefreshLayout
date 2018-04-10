@@ -128,7 +128,7 @@ public class MainActivity extends Activity implements RefreshAndLoadingLayout.On
 ```Java
 	dependencies {
 	  ...
-          compile 'com.github.aliletter:refreshandloadlayout:v1.2.2'
+          compile 'com.github.aliletter:refreshandloadlayout:v1.2.3'
 	}
 ```  
 ## Thank you for your browsing

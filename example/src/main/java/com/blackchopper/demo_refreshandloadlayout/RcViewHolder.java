@@ -1,13 +1,14 @@
-package com.aliletter.demo_refreshandloadlayout;
+package com.blackchopper.demo_refreshandloadlayout;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 /**
- * Author: mr-absurd
- * Github: http://github.com/mr-absurd
- * Data: 2017/10/6.
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project :
  */
 
 public class RcViewHolder extends RecyclerView.ViewHolder {

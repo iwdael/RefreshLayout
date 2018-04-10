@@ -1,4 +1,4 @@
-package com.aliletter.refreshandloadlayout;
+package com.blackchopper.refreshandloadlayout;
 
 import org.junit.Test;
 

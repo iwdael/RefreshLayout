@@ -1,5 +1,5 @@
-# RefreshAndLoadLayout  [![](https://jitpack.io/v/aliletter/refreshandloadlayout.svg)](https://jitpack.io/#aliletter/refreshandloadlayout)
-Pull-up and pull-down loads are the most common data update features in the list. RefreshAndLoadLayout not only implements these functions, but also provides developers with three interfaces to achieve the appropriate load transition.[中文文档](https://github.com/aliletter/RefreshAndLoadLayout/blob/master/README_CHINESE.md)
+# RefreshAndLoadLayout  [![](https://jitpack.io/v/blackchopper/refreshandloadlayout.svg)](https://jitpack.io/#blackchopper/refreshandloadlayout)
+Pull-up and pull-down loads are the most common data update features in the list. RefreshAndLoadLayout not only implements these functions, but also provides developers with three interfaces to achieve the appropriate load transition.[中文文档](https://github.com/blackchopper/RefreshAndLoadLayout/blob/master/README_CHINESE.md)
 ## Instruction
 RefreshAndLoadLayout provides three interfaces to the user: onRefresh, onNormal, onLoose. Corresponding function is to start refreshing, stop refreshing, let go refresh. In the layout, it must have three child controls, the first for the head refresh control, the second for the content area, and the third for the tail load control.
 ### Sample Code
@@ -62,7 +62,7 @@ public class MainActivity extends Activity implements RefreshAndLoadingLayout.On
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout
+    <com.blackchopper.refreshandloadlayout.RefreshAndLoadingLayout
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -108,13 +108,13 @@ public class MainActivity extends Activity implements RefreshAndLoadingLayout.On
                 android:textSize="20sp" />
 
         </LinearLayout>
-    </com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout>
+    </com.blackchopper.refreshandloadlayout.RefreshAndLoadingLayout>
 </LinearLayout>
 ```
 ## How to
 To get a Git project into your build:
 ### Step 1. Add the JitPack repository to your build file
-Add it in your root build.gradle at the end of repositories.[click here for details](https://github.com/aliletter/CarouselBanner/blob/master/root_build.gradle.png)
+Add it in your root build.gradle at the end of repositories.[click here for details](https://github.com/blackchopper/CarouselBanner/blob/master/root_build.gradle.png)
 
 	allprojects {
 		repositories {
@@ -124,14 +124,14 @@ Add it in your root build.gradle at the end of repositories.[click here for deta
 	}
   
 ### Step 2. Add the dependency
-Add it in your application module build.gradle at the end of dependencies where you want to use.   [click here for details](https://github.com/aliletter/CarouselBanner/blob/master/application_build.gradle.png)
+Add it in your application module build.gradle at the end of dependencies where you want to use.   [click here for details](https://github.com/blackchopper/CarouselBanner/blob/master/application_build.gradle.png)
 ```Java
 	dependencies {
 	  ...
-          compile 'com.github.aliletter:refreshandloadlayout:v1.2.2'
+          compile 'com.github.blackchopper:refreshandloadlayout:v1.2.3'
 	}
 ```	
 ## Thank you for your browsing
 If you have any questions, please join the QQ group. I will do my best to answer it for you. Welcome to star and fork this repository, alse follow me.
 <br>
-![Image Text](https://github.com/aliletter/CarouselBanner/blob/master/qq_group.png)
+![Image Text](https://github.com/blackchopper/CarouselBanner/blob/master/qq_group.png)

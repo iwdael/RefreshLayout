@@ -1,20 +1,22 @@
-package com.aliletter.demo_refreshandloadlayout;
+package com.blackchopper.demo_refreshandloadlayout;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.TextView;
 
-import com.aliletter.refreshandloadlayout.OnRefreshAndLoadListener;
-import com.aliletter.refreshandloadlayout.RefreshAndLoadingLayout;
+import com.blackchopper.refreshandloadlayout.RefreshAndLoadingLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project :
+ */
 public class MainActivity extends Activity {
     private RefreshAndLoadingLayout mSwipeLayout;
     private RecyclerView rc_view;
