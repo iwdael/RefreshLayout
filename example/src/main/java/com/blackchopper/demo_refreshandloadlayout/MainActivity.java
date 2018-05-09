@@ -2,14 +2,13 @@ package com.blackchopper.demo_refreshandloadlayout;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
 
-import com.blackchopper.refreshandloadlayout.RefreshAndLoadingLayout;
+import com.blackchopper.refresh.core.RefreshLayout;
+import com.blackchopper.refresh.core.api.Refresh;
+import com.blackchopper.refresh.core.listener.OnLoadMoreListener;
+import com.blackchopper.refresh.core.listener.OnRefreshListener;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * author  : Black Chopper
@@ -18,42 +17,25 @@ import java.util.List;
  * project :
  */
 public class MainActivity extends Activity {
-    private RefreshAndLoadingLayout mSwipeLayout;
-    private RecyclerView rc_view;
-    RcAdapter adapter;
-    List<String> data = new ArrayList<>();
-    RefreshAndLoadListener listener;
+    RefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        rc_view = findViewById(R.id.rc_view);
-        adapter = new RcAdapter();
-        rc_view.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rc_view.setAdapter(adapter);
-        mSwipeLayout = (RefreshAndLoadingLayout) findViewById(R.id.swipe_container);
-        listener = new RefreshAndLoadListener(this) {
+        refreshLayout = findViewById(R.id.refresh);
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            protected void Refresh(int page) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        listener.stopRefresh(mSwipeLayout, new endListener() {
-                            @Override
-                            public void onEnd(boolean isHeader) {
-
-                            }
-                        });
-                    }
-                }, 2000);
+            public void onRefresh(@NonNull Refresh refreshLayout) {
+                    refreshLayout.finishRefresh(2000);
             }
-        };
-        mSwipeLayout.setOnRefreshListener(listener);
-        for (int i = 0; i < 15; i++) {
-            data.add("------" + (1 * 10 + i) + "--------");
-        }
-        adapter.bindData(data);
+        });
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull Refresh refreshLayout) {
+                refreshLayout.finishLoadMore(2000);
+            }
+        });
     }
 
 

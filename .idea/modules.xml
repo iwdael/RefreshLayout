@@ -2,16 +2,19 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RefreshAndLoadLayout.iml" filepath="$PROJECT_DIR$/RefreshAndLoadLayout.iml" />
-      <module fileurl="file://C:\Users\alile\Desktop\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" filepath="C:\Users\alile\Desktop\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" />
+      <module fileurl="file://F:\RefreshLayout\RefreshAndLoadLayout.iml" filepath="F:\RefreshLayout\RefreshAndLoadLayout.iml" />
       <module fileurl="file://F:\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" filepath="F:\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" />
-      <module fileurl="file://C:\Users\alile\Desktop\RefreshAndLoadLayout\app\app.iml" filepath="C:\Users\alile\Desktop\RefreshAndLoadLayout\app\app.iml" />
+      <module fileurl="file://C:\Users\alile\Desktop\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" filepath="C:\Users\alile\Desktop\RefreshAndLoadLayout\RefreshAndLoadLayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RefreshLayout.iml" filepath="$PROJECT_DIR$/RefreshLayout.iml" />
       <module fileurl="file://C:\Users\alile\Desktop\RefreshAndLoadLayout\example\app.iml" filepath="C:\Users\alile\Desktop\RefreshAndLoadLayout\example\app.iml" />
+      <module fileurl="file://C:\Users\alile\Desktop\RefreshAndLoadLayout\app\app.iml" filepath="C:\Users\alile\Desktop\RefreshAndLoadLayout\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
       <module fileurl="file://F:\RefreshAndLoadLayout\example\example.iml" filepath="F:\RefreshAndLoadLayout\example\example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libsrefreshandloadlayout/libsrefreshandloadlayout.iml" filepath="$PROJECT_DIR$/libsrefreshandloadlayout/libsrefreshandloadlayout.iml" />
-      <module fileurl="file://C:\Users\alile\Desktop\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" filepath="C:\Users\alile\Desktop\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" />
       <module fileurl="file://F:\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" filepath="F:\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" />
+      <module fileurl="file://F:\RefreshLayout\libsrefreshlayout\libsrefreshandloadlayout.iml" filepath="F:\RefreshLayout\libsrefreshlayout\libsrefreshandloadlayout.iml" />
+      <module fileurl="file://C:\Users\alile\Desktop\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" filepath="C:\Users\alile\Desktop\RefreshAndLoadLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" />
+      <module fileurl="file://F:\RefreshLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" filepath="F:\RefreshLayout\libsrefreshandloadlayout\libsrefreshandloadlayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libsrefreshlayout/libsrefreshlayout.iml" filepath="$PROJECT_DIR$/libsrefreshlayout/libsrefreshlayout.iml" />
     </modules>
   </component>
 </project>

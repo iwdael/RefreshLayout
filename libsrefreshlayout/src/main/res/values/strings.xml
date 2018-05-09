@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">refreshlayout</string>
+    <string name="content_empty">The content view in SmartRefreshLayout is empty. Do you forget to add it in xml layout file?</string>
+
+    <string name="header_pulling">下拉刷新</string>
+    <string name="header_release">放开刷新</string>
+    <string name="header_refreshing">刷新中…</string>
+    <string name="header_loading">加载中…</string>
+    <string name="header_finish">刷新成功</string>
+    <string name="header_failed">Refresh Failed</string>
+    <string name="header_update">\'上次更新:\' HH:mm</string>
+    <string name="header_secondary">马上二楼</string>
+
+    <string name="footer_pulling">上拉加载</string>
+    <string name="footer_release">松开加载</string>
+    <string name="footer_loading">加载中…</string>
+    <string name="footer_refreshing">加载中…</string>
+    <string name="footer_finish">加载成功</string>
+    <string name="footer_failed">加载失败</string>
+    <string name="footer_nothing">没有数据</string>
+</resources>
