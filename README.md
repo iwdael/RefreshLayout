@@ -1,4 +1,4 @@
-# RefreshAndLoadLayout  [![](https://jitpack.io/v/blackchopper/refreshandloadlayout.svg)](https://jitpack.io/#blackchopper/refreshandloadlayout)
+# RefreshLayout  [![](https://jitpack.io/v/blackchopper/refreshlayout.svg)](https://jitpack.io/#blackchopper/refreshlayout)
 Pull-up and pull-down loads are the most common data update features in the list. RefreshAndLoadLayout not only implements these functions, but also provides developers with three interfaces to achieve the appropriate load transition.[中文文档](https://github.com/blackchopper/RefreshAndLoadLayout/blob/master/README_CHINESE.md)
 ## Instruction
 RefreshAndLoadLayout provides three interfaces to the user: onRefresh, onNormal, onLoose. Corresponding function is to start refreshing, stop refreshing, let go refresh. In the layout, it must have three child controls, the first for the head refresh control, the second for the content area, and the third for the tail load control.
@@ -128,7 +128,7 @@ Add it in your application module build.gradle at the end of dependencies where 
 ```Java
 	dependencies {
 	  ...
-          compile 'com.github.blackchopper:refreshandloadlayout:v1.2.3'
+          compile 'com.github.blackchopper:refreshlayout:v1.2.3'
 	}
 ```	
 ## Thank you for your browsing
