@@ -1,5 +1,5 @@
-# RefreshAndLoadLayout  [![](https://jitpack.io/v/aliletter/refreshlayout.svg)](https://jitpack.io/#aliletter/refreshlayout)
-上拉刷新和下拉加载是列表中最常见的数据更新功能。RefreshAndLoadLayout不仅实现了这些功能，还为开发者提供了三个接口来实现相应的加载过渡效果。
+# RefreshAndLoadLayout  [![](https://jitpack.io/v/blackchopper/refreshlayout.svg)](https://jitpack.io/#blackchopper/refreshlayout)
+上拉刷新和下拉加载是列表中最常见的数据更新功能。RefreshLayout不仅实现了这些功能，还为开发者提供了三个接口来实现相应的加载过渡效果。
 ## 使用说明
 RefreshAndLoadLayout为使用者提供了三个接口，分别是onRefresh, onNormal, onLoose。对应的功能是开始刷新，停止刷新，松手刷新。在布局中，它必须有三个子控件，第一个为头部刷新控件，第二个为内容区域，第三个为尾部加载控件。
 ### 代码示例
@@ -128,7 +128,7 @@ public class MainActivity extends Activity implements RefreshAndLoadingLayout.On
 ```Java
 	dependencies {
 	  ...
-          compile 'com.github.aliletter:refreshlayout:v1.2.4'
+          compile 'com.github.blackchopper:refreshlayout:v1.2.4'
 	}
 ```  
 ## Thank you for your browsing
