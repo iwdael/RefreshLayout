@@ -1,9 +1,152 @@
 <resources>
-    <string name="app_name">RefreshAndLoadLayout</string>
-    <string name="load_loose">松手加载</string>
-    <string name="refresh_normal">下拉刷新</string>
-    <string name="load_normal">上拉加载</string>
-    <string name="refresh_loose">松手刷新</string>
-    <string name="refreshing">刷新中啊</string>
-    <string name="loading">加载中啊</string>
+    <string name="app_name">SmartRefreshLayout</string>
+
+    <string name="title_style">Style</string>
+    <string name="title_example">Example</string>
+    <string name="title_practice">Practice</string>
+
+    <string name="region_hint">unselected</string>
+    <string name="region_name">selected area</string>
+
+    <string name="fragment_refresh_styles">Styles</string>
+    <string name="fragment_refresh_example">Examples</string>
+    <string name="fragment_refresh_practice">Practice</string>
+
+    <string name="title_activity_index_main">Refresh</string>
+
+    <string name="title_activity_practice_repast">Restaurant</string>
+    <string name="title_activity_practice_profile">Profile</string>
+    <string name="title_activity_practice_web_view">Github</string>
+    <string name="title_activity_practice_feed_list">Feed List</string>
+    <string name="title_activity_practice_banner">Banner</string>
+    <string name="title_activity_practice_weibo">Weibo Home</string>
+    <string name="title_activity_practice_qq_browser">QQ Browser</string>
+
+    <string name="title_activity_style_wave_swipe">WaveSwipeHeader</string>
+    <string name="title_activity_style_material">MaterialHeader</string>
+    <string name="title_activity_style_water_drop">WaterDropHeader</string>
+    <string name="title_activity_style_phoenix">PhoenixHeader</string>
+    <string name="title_activity_style_taurus">TaurusHeader</string>
+    <string name="title_activity_style_bezier">BezierRadarHeader</string>
+    <string name="title_activity_style_classics">ClassicsHeader</string>
+    <string name="title_activity_style_circle">BezierCircleHeader</string>
+    <string name="title_activity_style_battle_city">FunGameBattleCityHeader</string>
+    <string name="title_activity_style_hit_block">FunGameHitBlockHeader</string>
+    <string name="title_activity_style_storehouse">StoreHouseHeader</string>
+    <string name="title_activity_style_drop_box">DropBoxHeader</string>
+    <string name="title_activity_style_delivery">DeliveryHeader</string>
+    <string name="title_activity_style_fly_refresh">FlyRefreshHeader</string>
+
+    <string name="title_activity_example_basic">General Example</string>
+    <string name="title_activity_example_assign_default">Global Default</string>
+    <string name="title_activity_example_assign_xml">Specified In XML</string>
+    <string name="title_activity_example_assign_code">Specified In Java</string>
+    <string name="title_activity_example_over_scroll">Cross-border springBack</string>
+    <string name="title_activity_example_listener">Multifunction monitor</string>
+    <string name="title_activity_example_custom">Custom Header</string>
+    <string name="title_activity_example_snap_helper">SnapHelper</string>
+
+    <string name="fragment_example_pure_scroll">Pure Rolling Mode</string>
+    <string name="fragment_example_pure_scroll_header">Pure Rolling Mode - Header Only</string>
+    <string name="fragment_example_empty_layout">Empty Layout</string>
+    <string name="fragment_example_empty_layout_inner">Empty Layout - Nested Inside</string>
+    <string name="fragment_example_empty_layout_outer">Empty Layout - Nested Outside</string>
+    <string name="fragment_example_nest_scroll">Nested Scrolling</string>
+    <string name="fragment_example_nested_scroll_integral">Nested Scrolling - Whole Nested</string>
+    <string name="fragment_example_viewpager">ViewPager</string>
+    <string name="fragment_example_three_level">Three Level Refresh</string>
+    <string name="fragment_example_bottom_sheet">Bottom Sheet</string>
+
+    <string name="index_practice_repast">Simple customization header, HeaderInsetStart</string>
+    <string name="index_practice_profile">Pure scroll mode</string>
+    <string name="index_practice_web_view">Use WebView</string>
+    <string name="index_practice_feed_list">Intelligent identification</string>
+    <string name="index_practice_weibo">MultiPurposeListener</string>
+    <string name="index_practice_banner">Use banner</string>
+    <string name="index_practice_qq_browser">Imitate QQ browser</string>
+    <string name="index_practice_second_floor">Imitate the second floor of "Treasure Prospecting"</string>
+
+    <string name="index_example_basic">The basic usage of refresh layout</string>
+    <string name="index_example_style">Specify the style of Header and Footer</string>
+    <string name="index_example_empty">The usage of empty pages</string>
+    <string name="index_example_layout">Use Layout as content</string>
+    <string name="index_example_nested">The usage of nested scroll</string>
+    <string name="index_example_scroll">The usage of pure rolling mode</string>
+    <string name="index_example_listener">The usage of multifunction listener</string>
+    <string name="index_example_custom">The usage of custom Header</string>
+    <string name="index_example_snap_helper">The usage of SnapHelper</string>
+    <string name="index_example_pager">The usage of ViewPager</string>
+    <string name="index_example_bottom_sheet">The usage of BottomSheet</string>
+    <string name="index_example_level">The usage of three level refresh</string>
+
+    <string name="item_style_theme_orange_abstract">Change theme to orange color</string>
+    <string name="item_style_theme_red_abstract">Change theme to red color</string>
+    <string name="item_style_theme_green_abstract">Change theme to green color</string>
+    <string name="item_style_theme_blue_abstract">Change theme to blue color</string>
+    <string name="item_style_theme_default_abstract">Change theme to default color</string>
+    <string name="item_style_content_translation_off">The content stays where it is when it is pulled down</string>
+    <string name="item_style_content_translation_on">The content follow the downward migration when pulling down</string>
+    <string name="item_style_horizontal_drag_on">Open left and right drag effect</string>
+    <string name="item_style_horizontal_drag_off">Close the left and right drag effect</string>
+    <string name="item_style_spinner_scale">The height of the Header is larger when you pull down</string>
+    <string name="item_style_spinner_translation">The Header\'s position is shifted down when you pull down</string>
+    <string name="item_style_spinner_behind">The Header is fixed behind the back when you pull down</string>
+    <string name="item_style_spinner_update_on">Open display last update function</string>
+    <string name="item_style_spinner_update_off">The shutdown shows the last update function</string>
+    <string name="item_style_load_more">The top pull loads more</string>
+    <string name="item_style_bezier_on">Draw the background of bezier curve when pulling down</string>
+    <string name="item_style_bezier_off">Don\'t draw the background of bezier curve when pulling down</string>
+    <string name="item_style_app_bar_expand">Expand the AppBarLayout </string>
+    <string name="item_style_app_bar_collapse">Collapse the AppBarLayout</string>
+    <string name="item_style_store_house_english">And change the display symbol in English</string>
+    <string name="item_style_store_house_chinese">The display symbol is Chinese</string>
+    <string name="item_style_store_house_icon">Follow the display symbol for ICONS</string>
+    <string name="item_style_store_house_brand">It is a trademark for the display symbol</string>
+
+    <string name="item_example_number_title">Item %02d</string>
+    <string name="item_example_number_abstract">This is the abstract item %02d</string>
+    <string name="item_example_pager_left">Left Pager</string>
+    <string name="item_example_pager_right">Right Pager</string>
+
+    <string name="github_qq_browser_kernel">The web page is provided by github.com.\nThe QQ browser X5 kernel has been enabled.</string>
+
+    <string name="description_set_default_creator">\n
+        Usage： \n
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {\n
+        public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {\n
+        return new ClassicsHeader(context);\n
+        }\n
+        });\n
+        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {\n
+        public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {\n
+        return new ClassicsFooter(context);\n
+        }\n
+        });\n\n
+        The key code needs to be set before the layout is generated and the recommended code is placed in the "Application.onCreate".
+    </string>
+    <string name="description_define_in_xml"><![CDATA[\n
+        Feature：\n
+        1.Can preview in Android Studio\n
+        2.Priority is higher than [global default] but below [JavaCode]\n\n
+        Usage：\n
+        <com.scwang.smartrefresh.SmartRefreshLayout\n
+            \t\tandroid:layout_width="match_parent"\n
+            \t\tandroid:layout_height="match_parent">\n
+            \t<com.scwang.smartrefresh.header.ClassicsHeader\n
+                \t\tandroid:layout_width="match_parent"\n
+                \t\tandroid:layout_height="wrap_content"/>\n
+            \t<TextView\n
+                \t\tandroid:layout_width="match_parent"\n
+                \t\tandroid:layout_height="match_parent"/>\n
+            \t<com.scwang.smartrefresh.footer.ClassicsFooter\n
+                \t\tandroid:layout_width="match_parent"\n
+                \t\tandroid:layout_height="wrap_content"/>\n
+        </com.scwang.smartrefresh.SmartRefreshLayout>\n
+    ]]></string>
+    <string name="description_define_in_code">\n
+        Usage： \n
+        final RefreshLayout refreshLayout = (RefreshLayout) findViewById(R.id.refreshLayout);\n
+        refreshLayout.setRefreshHeader(new MaterialHeader(this));\n
+        refreshLayout.setRefreshFooter(new BallPulseFooter(this));\n\n
+    </string>
 </resources>
