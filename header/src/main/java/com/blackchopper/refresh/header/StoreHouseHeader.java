@@ -87,11 +87,11 @@ public class StoreHouseHeader extends InternalAbstract implements RefreshHeader 
         setTextColor(0xffcccccc);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.StoreHouseHeader);
-        mLineWidth = ta.getDimensionPixelOffset(R.styleable.StoreHouseHeader_shhLineWidth, mLineWidth);
-        mDropHeight = ta.getDimensionPixelOffset(R.styleable.StoreHouseHeader_shhDropHeight, mDropHeight);
-        mEnableFadeAnimation = ta.getBoolean(R.styleable.StoreHouseHeader_shhEnableFadeAnimation, mEnableFadeAnimation);
-        if (ta.hasValue(R.styleable.StoreHouseHeader_shhText)) {
-            initWithString(ta.getString(R.styleable.StoreHouseHeader_shhText));
+        mLineWidth = ta.getDimensionPixelOffset(R.styleable.StoreHouseHeader_lineWidth, mLineWidth);
+        mDropHeight = ta.getDimensionPixelOffset(R.styleable.StoreHouseHeader_dropHeight, mDropHeight);
+        mEnableFadeAnimation = ta.getBoolean(R.styleable.StoreHouseHeader_enableFadeAnimation, mEnableFadeAnimation);
+        if (ta.hasValue(R.styleable.StoreHouseHeader_text)) {
+            initWithString(ta.getString(R.styleable.StoreHouseHeader_text));
         } else {
             initWithString("StoreHouse");
         }

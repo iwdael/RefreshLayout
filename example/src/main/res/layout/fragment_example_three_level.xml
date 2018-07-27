@@ -15,10 +15,10 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnableLoadMore="false"
-        app:srlEnableOverScrollBounce="false"
-        app:srlEnableNestedScrolling="true"
-        app:srlHeaderMaxDragRate="1.5">
+        app:enableLoadMore="false"
+        app:enableOverScrollBounce="false"
+        app:enableNestedScrolling="true"
+        app:headerMaxDragRate="1.5">
         <com.blackchopper.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -26,28 +26,28 @@
             android:id="@+id/refreshLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srlEnableLoadMore="false"
-            app:srlEnableOverScrollBounce="false"
-            app:srlEnableNestedScrolling="true"
-            app:srlHeaderMaxDragRate="1.35"
-            app:srlDragRate="0.75">
+            app:enableLoadMore="false"
+            app:enableOverScrollBounce="false"
+            app:enableNestedScrolling="true"
+            app:headerMaxDragRate="1.35"
+            app:dragRate="0.75">
             <com.blackchopper.refresh.core.header.ClassicsHeader
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srlPrimaryColor="#11bbff"
-                app:srlAccentColor="#fff"/>
+                app:primaryColor="#11bbff"
+                app:accentColor="#fff"/>
             <com.blackchopper.refresh.core.RefreshLayout
                 android:id="@+id/refreshLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srlEnableNestedScrolling="true"
-                app:srlHeaderMaxDragRate="1.5"
-                app:srlDragRate="0.5">
+                app:enableNestedScrolling="true"
+                app:headerMaxDragRate="1.5"
+                app:dragRate="0.5">
                 <com.blackchopper.refresh.core.header.ClassicsHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srlPrimaryColor="#3F51B5"
-                    app:srlAccentColor="#fff"/>
+                    app:primaryColor="#3F51B5"
+                    app:accentColor="#fff"/>
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"

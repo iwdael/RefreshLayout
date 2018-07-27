@@ -15,14 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        app:srlPrimaryColor="@color/colorTextContent"
-        app:srlEnableAutoLoadMore="false">
+        app:primaryColor="@color/colorTextContent"
+        app:enableAutoLoadMore="false">
         <com.blackchopper.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlPrimaryColor="@color/colorPrimary"
-            app:srlAccentColor="@android:color/white"
-            app:srlDrawableProgress="@drawable/animation_loading_frame"/>
+            app:primaryColor="@color/colorPrimary"
+            app:accentColor="@android:color/white"
+            app:drawableProgress="@drawable/animation_loading_frame"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

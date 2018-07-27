@@ -11,20 +11,20 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlDragRate="0.7"
-        app:srlHeaderMaxDragRate="1.3"
-        app:srlHeaderHeight="150dp"
-        app:srlEnableAutoLoadMore="true"
-        app:srlHeaderInsetStart="?attr/actionBarSize"
-        app:srlHeaderTriggerRate="0.5">
+        app:dragRate="0.7"
+        app:headerMaxDragRate="1.3"
+        app:headerHeight="150dp"
+        app:enableAutoLoadMore="true"
+        app:headerInsetStart="?attr/actionBarSize"
+        app:headerTriggerRate="0.5">
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gifView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@mipmap/gif_header_repast"
-            app:layout_srlSpinnerStyle="Scale"
-            app:layout_srlBackgroundColor="@android:color/transparent"/>
+            app:layout_spinnerStyle="Scale"
+            app:layout_backgroundColor="@android:color/transparent"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
@@ -36,9 +36,9 @@
         <com.blackchopper.refresh.core.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlAccentColor="#888"
-            app:srlClassicsSpinnerStyle="Translate"
-            app:srlDrawableProgress="@drawable/ic_progress_puzzle"/>
+            app:accentColor="#888"
+            app:classicsSpinnerStyle="Translate"
+            app:drawableProgress="@drawable/ic_progress_puzzle"/>
     </com.blackchopper.refresh.core.RefreshLayout>
 
     <com.github.mmin18.widget.RealtimeBlurView

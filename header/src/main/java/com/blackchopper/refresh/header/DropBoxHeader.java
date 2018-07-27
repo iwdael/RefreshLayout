@@ -105,8 +105,8 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
         mSpinnerStyle = SpinnerStyle.Scale;
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DropBoxHeader);
-        if (ta.hasValue(R.styleable.DropBoxHeader_dhDrawable1)) {
-            mDrawable1 = ta.getDrawable(R.styleable.DropBoxHeader_dhDrawable1);
+        if (ta.hasValue(R.styleable.DropBoxHeader_drawable1)) {
+            mDrawable1 = ta.getDrawable(R.styleable.DropBoxHeader_drawable1);
         } else {
             PathsDrawable drawable1 = new PathsDrawable();
             drawable1.parserColors(drawable1Colors);
@@ -116,8 +116,8 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
 //            drawable1.printOriginal("drawable1");
             mDrawable1 = drawable1;
         }
-        if (ta.hasValue(R.styleable.DropBoxHeader_dhDrawable2)) {
-            mDrawable2 = ta.getDrawable(R.styleable.DropBoxHeader_dhDrawable2);
+        if (ta.hasValue(R.styleable.DropBoxHeader_drawable2)) {
+            mDrawable2 = ta.getDrawable(R.styleable.DropBoxHeader_drawable2);
         } else {
             PathsDrawable drawable2 = new PathsDrawable();
             drawable2.parserColors(drawable2Colors);
@@ -127,8 +127,8 @@ public class DropBoxHeader extends InternalAbstract implements RefreshHeader {
 //            drawable2.printOriginal("drawable2");
             mDrawable2 = drawable2;
         }
-        if (ta.hasValue(R.styleable.DropBoxHeader_dhDrawable3)) {
-            mDrawable3 = ta.getDrawable(R.styleable.DropBoxHeader_dhDrawable3);
+        if (ta.hasValue(R.styleable.DropBoxHeader_drawable3)) {
+            mDrawable3 = ta.getDrawable(R.styleable.DropBoxHeader_drawable3);
         } else {
             PathsDrawable drawable3 = new PathsDrawable();
             drawable3.parserColors(drawable3Colors);

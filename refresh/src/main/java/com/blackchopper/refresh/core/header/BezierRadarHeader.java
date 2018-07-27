@@ -103,11 +103,11 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.BezierRadarHeader);
 
-        mEnableHorizontalDrag = ta.getBoolean(R.styleable.BezierRadarHeader_srlEnableHorizontalDrag, mEnableHorizontalDrag);
-        setAccentColor(ta.getColor(R.styleable.BezierRadarHeader_srlAccentColor, 0xFFffffff));
-        setPrimaryColor(ta.getColor(R.styleable.BezierRadarHeader_srlPrimaryColor, 0xFF222222));
-        mManualAccentColor = ta.hasValue(R.styleable.BezierRadarHeader_srlAccentColor);
-        mManualPrimaryColor = ta.hasValue(R.styleable.BezierRadarHeader_srlPrimaryColor);
+        mEnableHorizontalDrag = ta.getBoolean(R.styleable.BezierRadarHeader_enableHorizontalDrag, mEnableHorizontalDrag);
+        setAccentColor(ta.getColor(R.styleable.BezierRadarHeader_accentColor, 0xFFffffff));
+        setPrimaryColor(ta.getColor(R.styleable.BezierRadarHeader_primaryColor, 0xFF222222));
+        mManualAccentColor = ta.hasValue(R.styleable.BezierRadarHeader_accentColor);
+        mManualPrimaryColor = ta.hasValue(R.styleable.BezierRadarHeader_primaryColor);
 
         ta.recycle();
 
@@ -116,12 +116,6 @@ public class BezierRadarHeader extends InternalAbstract implements RefreshHeader
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-//        if (mRadarAnimator != null) {
-//            mRadarAnimator.removeAllListeners();
-//            mRadarAnimator.removeAllUpdateListeners();
-//            mRadarAnimator.end();
-//            mRadarAnimator = null;
-//        }
         if (mAnimatorSet != null) {
             mAnimatorSet.removeAllListeners();
             mAnimatorSet.end();

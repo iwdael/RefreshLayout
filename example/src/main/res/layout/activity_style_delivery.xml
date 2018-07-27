@@ -19,9 +19,9 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlDragRate="0.7"
-        app:srlHeaderMaxDragRate="1.3"
-        app:srlEnableLoadMore="false">
+        app:dragRate="0.7"
+        app:headerMaxDragRate="1.3"
+        app:enableLoadMore="false">
         <com.blackchopper.refresh.header.DeliveryHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

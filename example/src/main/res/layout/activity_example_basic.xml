@@ -16,8 +16,8 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnableScrollContentWhenLoaded="true"
-        app:srlEnableFooterFollowWhenLoadFinished="true">
+        app:enableScrollContentWhenLoaded="true"
+        app:enableFooterFollowWhenLoadFinished="true">
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         <com.blackchopper.refresh.core.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlClassicsSpinnerStyle="Translate"/>
+            app:classicsSpinnerStyle="Translate"/>
     </com.blackchopper.refresh.core.RefreshLayout>
 
 </LinearLayout>

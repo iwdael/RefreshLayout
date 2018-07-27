@@ -11,8 +11,8 @@
         android:id="@+id/mountain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:msvViewportHeight="340dp"
-        app:msvPrimaryColor="@color/colorPrimary"/>
+        app:viewportHeight="340dp"
+        app:primaryColor="@color/colorPrimary"/>
     <!--srlViewportHeightHeight 设置为-->
     <!--AppBarLayout.Height + RefreshHeader.Height-->
     <!--效果最佳-->
@@ -49,12 +49,12 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlHeaderMaxDragRate="1.5"
-        app:srlHeaderHeight="100dp"
-        app:srlReboundDuration="200"
-        app:srlEnableLoadMore="false"
-        app:srlEnablePreviewInEditMode="true"
-        app:srlEnableOverScrollBounce="false"
+        app:headerMaxDragRate="1.5"
+        app:headerHeight="100dp"
+        app:reboundDuration="200"
+        app:enableLoadMore="false"
+        app:enablePreviewInEditMode="true"
+        app:enableOverScrollBounce="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <com.blackchopper.refresh.header.FlyRefreshHeader
             android:id="@+id/flyRefresh"

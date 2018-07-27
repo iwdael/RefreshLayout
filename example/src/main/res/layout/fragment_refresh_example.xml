@@ -15,17 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        app:srlEnableNestedScrolling="true"
-        app:srlPrimaryColor="@color/colorPrimary"
-        app:srlAccentColor="@android:color/white"
-        app:srlEnableAutoLoadMore="false">
+        app:enableNestedScrolling="true"
+        app:primaryColor="@color/colorPrimary"
+        app:accentColor="@android:color/white"
+        app:enableAutoLoadMore="false">
         <com.blackchopper.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlAccentColor="#aaa"
-            app:srlDrawableProgressSize="25dp"
-            app:srlDrawableProgress="@drawable/animation_loading_rotate"
-            app:srlPrimaryColor="@color/colorBackgroundDark"/>
+            app:accentColor="#aaa"
+            app:drawableProgressSize="25dp"
+            app:drawableProgress="@drawable/animation_loading_rotate"
+            app:primaryColor="@color/colorBackgroundDark"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

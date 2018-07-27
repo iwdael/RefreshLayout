@@ -85,9 +85,6 @@ import static java.lang.System.currentTimeMillis;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class RefreshLayout extends ViewGroup implements Refresh, NestedScrollingParent/*, NestedScrollingChild*/ {
 
-    //<editor-fold desc="属性变量 property and variable">
-
-    //<editor-fold desc="滑动属性">
     protected int mTouchSlop;
     protected int mSpinner;//当前的 Spinner
     protected int mLastSpinner;//最后的，的Spinner
@@ -252,52 +249,52 @@ public class RefreshLayout extends ViewGroup implements Refresh, NestedScrolling
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.RefreshLayout);
 
-        mNestedChild.setNestedScrollingEnabled(ta.getBoolean(R.styleable.RefreshLayout_srlEnableNestedScrolling, mNestedChild.isNestedScrollingEnabled()));
-        mDragRate = ta.getFloat(R.styleable.RefreshLayout_srlDragRate, mDragRate);
-        mHeaderMaxDragRate = ta.getFloat(R.styleable.RefreshLayout_srlHeaderMaxDragRate, mHeaderMaxDragRate);
-        mFooterMaxDragRate = ta.getFloat(R.styleable.RefreshLayout_srlFooterMaxDragRate, mFooterMaxDragRate);
-        mHeaderTriggerRate = ta.getFloat(R.styleable.RefreshLayout_srlHeaderTriggerRate, mHeaderTriggerRate);
-        mFooterTriggerRate = ta.getFloat(R.styleable.RefreshLayout_srlFooterTriggerRate, mFooterTriggerRate);
-        mEnableRefresh = ta.getBoolean(R.styleable.RefreshLayout_srlEnableRefresh, mEnableRefresh);
-        mReboundDuration = ta.getInt(R.styleable.RefreshLayout_srlReboundDuration, mReboundDuration);
-        mEnableLoadMore = ta.getBoolean(R.styleable.RefreshLayout_srlEnableLoadMore, mEnableLoadMore);
-        mHeaderHeight = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_srlHeaderHeight, mHeaderHeight);
-        mFooterHeight = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_srlFooterHeight, mFooterHeight);
-        mHeaderInsetStart = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_srlHeaderInsetStart, mHeaderInsetStart);
-        mFooterInsetStart = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_srlFooterInsetStart, mFooterInsetStart);
-        mDisableContentWhenRefresh = ta.getBoolean(R.styleable.RefreshLayout_srlDisableContentWhenRefresh, mDisableContentWhenRefresh);
-        mDisableContentWhenLoading = ta.getBoolean(R.styleable.RefreshLayout_srlDisableContentWhenLoading, mDisableContentWhenLoading);
-        mEnableHeaderTranslationContent = ta.getBoolean(R.styleable.RefreshLayout_srlEnableHeaderTranslationContent, mEnableHeaderTranslationContent);
-        mEnableFooterTranslationContent = ta.getBoolean(R.styleable.RefreshLayout_srlEnableFooterTranslationContent, mEnableFooterTranslationContent);
-        mEnablePreviewInEditMode = ta.getBoolean(R.styleable.RefreshLayout_srlEnablePreviewInEditMode, mEnablePreviewInEditMode);
-        mEnableAutoLoadMore = ta.getBoolean(R.styleable.RefreshLayout_srlEnableAutoLoadMore, mEnableAutoLoadMore);
-        mEnableOverScrollBounce = ta.getBoolean(R.styleable.RefreshLayout_srlEnableOverScrollBounce, mEnableOverScrollBounce);
-        mEnablePureScrollMode = ta.getBoolean(R.styleable.RefreshLayout_srlEnablePureScrollMode, mEnablePureScrollMode);
-        mEnableScrollContentWhenLoaded = ta.getBoolean(R.styleable.RefreshLayout_srlEnableScrollContentWhenLoaded, mEnableScrollContentWhenLoaded);
-        mEnableScrollContentWhenRefreshed = ta.getBoolean(R.styleable.RefreshLayout_srlEnableScrollContentWhenRefreshed, mEnableScrollContentWhenRefreshed);
-        mEnableLoadMoreWhenContentNotFull = ta.getBoolean(R.styleable.RefreshLayout_srlEnableLoadMoreWhenContentNotFull, mEnableLoadMoreWhenContentNotFull);
-        mEnableFooterFollowWhenLoadFinished = ta.getBoolean(R.styleable.RefreshLayout_srlEnableFooterFollowWhenLoadFinished, mEnableFooterFollowWhenLoadFinished);
-        mEnableClipHeaderWhenFixedBehind = ta.getBoolean(R.styleable.RefreshLayout_srlEnableClipHeaderWhenFixedBehind, mEnableClipHeaderWhenFixedBehind);
-        mEnableClipFooterWhenFixedBehind = ta.getBoolean(R.styleable.RefreshLayout_srlEnableClipFooterWhenFixedBehind, mEnableClipFooterWhenFixedBehind);
-        mEnableOverScrollDrag = ta.getBoolean(R.styleable.RefreshLayout_srlEnableOverScrollDrag, mEnableOverScrollDrag);
-        mFixedHeaderViewId = ta.getResourceId(R.styleable.RefreshLayout_srlFixedHeaderViewId, mFixedHeaderViewId);
-        mFixedFooterViewId = ta.getResourceId(R.styleable.RefreshLayout_srlFixedFooterViewId, mFixedFooterViewId);
-        mHeaderTranslationViewId = ta.getResourceId(R.styleable.RefreshLayout_srlHeaderTranslationViewId, mHeaderTranslationViewId);
-        mFooterTranslationViewId = ta.getResourceId(R.styleable.RefreshLayout_srlFooterTranslationViewId, mFooterTranslationViewId);
+        mNestedChild.setNestedScrollingEnabled(ta.getBoolean(R.styleable.RefreshLayout_enableNestedScrolling, mNestedChild.isNestedScrollingEnabled()));
+        mDragRate = ta.getFloat(R.styleable.RefreshLayout_dragRate, mDragRate);
+        mHeaderMaxDragRate = ta.getFloat(R.styleable.RefreshLayout_headerMaxDragRate, mHeaderMaxDragRate);
+        mFooterMaxDragRate = ta.getFloat(R.styleable.RefreshLayout_footerMaxDragRate, mFooterMaxDragRate);
+        mHeaderTriggerRate = ta.getFloat(R.styleable.RefreshLayout_headerTriggerRate, mHeaderTriggerRate);
+        mFooterTriggerRate = ta.getFloat(R.styleable.RefreshLayout_footerTriggerRate, mFooterTriggerRate);
+        mEnableRefresh = ta.getBoolean(R.styleable.RefreshLayout_enableRefresh, mEnableRefresh);
+        mReboundDuration = ta.getInt(R.styleable.RefreshLayout_reboundDuration, mReboundDuration);
+        mEnableLoadMore = ta.getBoolean(R.styleable.RefreshLayout_enableLoadMore, mEnableLoadMore);
+        mHeaderHeight = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_headerHeight, mHeaderHeight);
+        mFooterHeight = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_footerHeight, mFooterHeight);
+        mHeaderInsetStart = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_headerInsetStart, mHeaderInsetStart);
+        mFooterInsetStart = ta.getDimensionPixelOffset(R.styleable.RefreshLayout_footerInsetStart, mFooterInsetStart);
+        mDisableContentWhenRefresh = ta.getBoolean(R.styleable.RefreshLayout_disableContentWhenRefresh, mDisableContentWhenRefresh);
+        mDisableContentWhenLoading = ta.getBoolean(R.styleable.RefreshLayout_disableContentWhenLoading, mDisableContentWhenLoading);
+        mEnableHeaderTranslationContent = ta.getBoolean(R.styleable.RefreshLayout_enableHeaderTranslationContent, mEnableHeaderTranslationContent);
+        mEnableFooterTranslationContent = ta.getBoolean(R.styleable.RefreshLayout_enableFooterTranslationContent, mEnableFooterTranslationContent);
+        mEnablePreviewInEditMode = ta.getBoolean(R.styleable.RefreshLayout_enablePreviewInEditMode, mEnablePreviewInEditMode);
+        mEnableAutoLoadMore = ta.getBoolean(R.styleable.RefreshLayout_enableAutoLoadMore, mEnableAutoLoadMore);
+        mEnableOverScrollBounce = ta.getBoolean(R.styleable.RefreshLayout_enableOverScrollBounce, mEnableOverScrollBounce);
+        mEnablePureScrollMode = ta.getBoolean(R.styleable.RefreshLayout_enablePureScrollMode, mEnablePureScrollMode);
+        mEnableScrollContentWhenLoaded = ta.getBoolean(R.styleable.RefreshLayout_enableScrollContentWhenLoaded, mEnableScrollContentWhenLoaded);
+        mEnableScrollContentWhenRefreshed = ta.getBoolean(R.styleable.RefreshLayout_enableScrollContentWhenRefreshed, mEnableScrollContentWhenRefreshed);
+        mEnableLoadMoreWhenContentNotFull = ta.getBoolean(R.styleable.RefreshLayout_enableLoadMoreWhenContentNotFull, mEnableLoadMoreWhenContentNotFull);
+        mEnableFooterFollowWhenLoadFinished = ta.getBoolean(R.styleable.RefreshLayout_enableFooterFollowWhenLoadFinished, mEnableFooterFollowWhenLoadFinished);
+        mEnableClipHeaderWhenFixedBehind = ta.getBoolean(R.styleable.RefreshLayout_enableClipHeaderWhenFixedBehind, mEnableClipHeaderWhenFixedBehind);
+        mEnableClipFooterWhenFixedBehind = ta.getBoolean(R.styleable.RefreshLayout_enableClipFooterWhenFixedBehind, mEnableClipFooterWhenFixedBehind);
+        mEnableOverScrollDrag = ta.getBoolean(R.styleable.RefreshLayout_enableOverScrollDrag, mEnableOverScrollDrag);
+        mFixedHeaderViewId = ta.getResourceId(R.styleable.RefreshLayout_fixedHeaderViewId, mFixedHeaderViewId);
+        mFixedFooterViewId = ta.getResourceId(R.styleable.RefreshLayout_fixedFooterViewId, mFixedFooterViewId);
+        mHeaderTranslationViewId = ta.getResourceId(R.styleable.RefreshLayout_headerTranslationViewId, mHeaderTranslationViewId);
+        mFooterTranslationViewId = ta.getResourceId(R.styleable.RefreshLayout_footerTranslationViewId, mFooterTranslationViewId);
 
-        if (mEnablePureScrollMode && !ta.hasValue(R.styleable.RefreshLayout_srlEnableOverScrollDrag)) {
+        if (mEnablePureScrollMode && !ta.hasValue(R.styleable.RefreshLayout_enableOverScrollDrag)) {
             mEnableOverScrollDrag = true;
         }
 
-        mManualLoadMore = ta.hasValue(R.styleable.RefreshLayout_srlEnableLoadMore);
-        mManualHeaderTranslationContent = ta.hasValue(R.styleable.RefreshLayout_srlEnableHeaderTranslationContent);
-        mManualFooterTranslationContent = ta.hasValue(R.styleable.RefreshLayout_srlEnableFooterTranslationContent);
-        mManualNestedScrolling = mManualNestedScrolling || ta.hasValue(R.styleable.RefreshLayout_srlEnableNestedScrolling);
-        mHeaderHeightStatus = ta.hasValue(R.styleable.RefreshLayout_srlHeaderHeight) ? DimensionStatus.XmlLayoutUnNotify : mHeaderHeightStatus;
-        mFooterHeightStatus = ta.hasValue(R.styleable.RefreshLayout_srlFooterHeight) ? DimensionStatus.XmlLayoutUnNotify : mFooterHeightStatus;
+        mManualLoadMore = ta.hasValue(R.styleable.RefreshLayout_enableLoadMore);
+        mManualHeaderTranslationContent = ta.hasValue(R.styleable.RefreshLayout_enableHeaderTranslationContent);
+        mManualFooterTranslationContent = ta.hasValue(R.styleable.RefreshLayout_enableFooterTranslationContent);
+        mManualNestedScrolling = mManualNestedScrolling || ta.hasValue(R.styleable.RefreshLayout_enableNestedScrolling);
+        mHeaderHeightStatus = ta.hasValue(R.styleable.RefreshLayout_headerHeight) ? DimensionStatus.XmlLayoutUnNotify : mHeaderHeightStatus;
+        mFooterHeightStatus = ta.hasValue(R.styleable.RefreshLayout_footerHeight) ? DimensionStatus.XmlLayoutUnNotify : mFooterHeightStatus;
 
-        int accentColor = ta.getColor(R.styleable.RefreshLayout_srlAccentColor, 0);
-        int primaryColor = ta.getColor(R.styleable.RefreshLayout_srlPrimaryColor, 0);
+        int accentColor = ta.getColor(R.styleable.RefreshLayout_accentColor, 0);
+        int primaryColor = ta.getColor(R.styleable.RefreshLayout_primaryColor, 0);
         if (primaryColor != 0) {
             if (accentColor != 0) {
                 mPrimaryColors = new int[]{primaryColor, accentColor};
@@ -1535,9 +1532,9 @@ public class RefreshLayout extends ViewGroup implements Refresh, NestedScrolling
         public LayoutParams(Context context, AttributeSet attrs) {
             super(context, attrs);
             TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.SmartRefreshLayout_Layout);
-            backgroundColor = ta.getColor(R.styleable.SmartRefreshLayout_Layout_layout_srlBackgroundColor, backgroundColor);
-            if (ta.hasValue(R.styleable.SmartRefreshLayout_Layout_layout_srlSpinnerStyle)) {
-                spinnerStyle = SpinnerStyle.values()[ta.getInt(R.styleable.SmartRefreshLayout_Layout_layout_srlSpinnerStyle, SpinnerStyle.Translate.ordinal())];
+            backgroundColor = ta.getColor(R.styleable.SmartRefreshLayout_Layout_layout_backgroundColor, backgroundColor);
+            if (ta.hasValue(R.styleable.SmartRefreshLayout_Layout_layout_spinnerStyle)) {
+                spinnerStyle = SpinnerStyle.values()[ta.getInt(R.styleable.SmartRefreshLayout_Layout_layout_spinnerStyle, SpinnerStyle.Translate.ordinal())];
             }
             ta.recycle();
         }

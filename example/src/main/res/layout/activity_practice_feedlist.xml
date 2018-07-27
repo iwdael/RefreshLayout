@@ -18,11 +18,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/text"
-        app:srlAccentColor="#fff"
-        app:srlPrimaryColor="#444"
-        app:srlFixedHeaderViewId="@+id/profile"
-        app:srlEnablePreviewInEditMode="false"
-        app:srlEnableLoadMoreWhenContentNotFull="false">
+        app:accentColor="#fff"
+        app:primaryColor="#444"
+        app:fixedHeaderViewId="@+id/profile"
+        app:enablePreviewInEditMode="false"
+        app:enableLoadMoreWhenContentNotFull="false">
 
         <com.blackchopper.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
@@ -954,7 +954,7 @@
         <com.blackchopper.refresh.core.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlClassicsSpinnerStyle="FixedBehind"/>
+            app:classicsSpinnerStyle="FixedBehind"/>
     </com.blackchopper.refresh.core.RefreshLayout>
 
 </LinearLayout>

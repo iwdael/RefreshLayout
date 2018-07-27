@@ -17,16 +17,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        app:srlPrimaryColor="#333"
-        app:srlAccentColor="#fff"
-        app:srlEnableLoadMore="false"
-        app:srlEnableHeaderTranslationContent="true">
+        app:primaryColor="#333"
+        app:accentColor="#fff"
+        app:enableLoadMore="false"
+        app:enableHeaderTranslationContent="true">
         <com.blackchopper.refresh.header.StoreHouseHeader
             android:id="@+id/storeHouseHeader"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            app:shhText="StoreHouse"
-            app:shhLineWidth="2dp"/>
+            app:text="StoreHouse"
+            app:lineWidth="2dp"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

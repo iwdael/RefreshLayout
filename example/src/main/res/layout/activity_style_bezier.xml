@@ -17,10 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        app:srlPrimaryColor="@color/colorPrimary"
-        app:srlAccentColor="@android:color/white"
-        app:srlEnableHeaderTranslationContent="true"
-        app:srlEnableLoadMore="false">
+        app:primaryColor="@color/colorPrimary"
+        app:accentColor="@android:color/white"
+        app:enableHeaderTranslationContent="true"
+        app:enableLoadMore="false">
         <com.blackchopper.refresh.core.header.BezierRadarHeader
             android:id="@+id/header"
             android:layout_width="match_parent"

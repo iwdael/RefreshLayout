@@ -15,8 +15,8 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnablePureScrollMode="false"
-        app:srlEnableOverScrollDrag="false">
+        app:enablePureScrollMode="false"
+        app:enableOverScrollDrag="false">
         <com.blackchopper.refresh.core.header.FalsifyHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

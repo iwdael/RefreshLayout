@@ -88,49 +88,49 @@ public class ClassicsFooter extends InternalClassics<ClassicsFooter> implements 
 
         LayoutParams lpArrow = (LayoutParams) arrowView.getLayoutParams();
         LayoutParams lpProgress = (LayoutParams) progressView.getLayoutParams();
-        lpProgress.rightMargin = ta.getDimensionPixelSize(R.styleable.ClassicsFooter_srlDrawableMarginRight, density.dip2px(20));
+        lpProgress.rightMargin = ta.getDimensionPixelSize(R.styleable.ClassicsFooter_drawableMarginRight, density.dip2px(20));
         lpArrow.rightMargin = lpProgress.rightMargin;
 
-        lpArrow.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableArrowSize, lpArrow.width);
-        lpArrow.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableArrowSize, lpArrow.height);
-        lpProgress.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableProgressSize, lpProgress.width);
-        lpProgress.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableProgressSize, lpProgress.height);
+        lpArrow.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableArrowSize, lpArrow.width);
+        lpArrow.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableArrowSize, lpArrow.height);
+        lpProgress.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableProgressSize, lpProgress.width);
+        lpProgress.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableProgressSize, lpProgress.height);
 
-        lpArrow.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableSize, lpArrow.width);
-        lpArrow.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableSize, lpArrow.height);
-        lpProgress.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableSize, lpProgress.width);
-        lpProgress.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_srlDrawableSize, lpProgress.height);
+        lpArrow.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableSize, lpArrow.width);
+        lpArrow.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableSize, lpArrow.height);
+        lpProgress.width = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableSize, lpProgress.width);
+        lpProgress.height = ta.getLayoutDimension(R.styleable.ClassicsFooter_drawableSize, lpProgress.height);
 
-        mFinishDuration = ta.getInt(R.styleable.ClassicsFooter_srlFinishDuration, mFinishDuration);
-        mSpinnerStyle = SpinnerStyle.values()[ta.getInt(R.styleable.ClassicsFooter_srlClassicsSpinnerStyle, mSpinnerStyle.ordinal())];
+        mFinishDuration = ta.getInt(R.styleable.ClassicsFooter_finishDuration, mFinishDuration);
+        mSpinnerStyle = SpinnerStyle.values()[ta.getInt(R.styleable.ClassicsFooter_classicsSpinnerStyle, mSpinnerStyle.ordinal())];
 
-        if (ta.hasValue(R.styleable.ClassicsFooter_srlDrawableArrow)) {
-            mArrowView.setImageDrawable(ta.getDrawable(R.styleable.ClassicsFooter_srlDrawableArrow));
+        if (ta.hasValue(R.styleable.ClassicsFooter_drawableArrow)) {
+            mArrowView.setImageDrawable(ta.getDrawable(R.styleable.ClassicsFooter_drawableArrow));
         } else {
             mArrowDrawable = new ArrowDrawable();
             mArrowDrawable.setColor(0xff666666);
             mArrowView.setImageDrawable(mArrowDrawable);
         }
 
-        if (ta.hasValue(R.styleable.ClassicsFooter_srlDrawableProgress)) {
-            mProgressView.setImageDrawable(ta.getDrawable(R.styleable.ClassicsFooter_srlDrawableProgress));
+        if (ta.hasValue(R.styleable.ClassicsFooter_drawableProgress)) {
+            mProgressView.setImageDrawable(ta.getDrawable(R.styleable.ClassicsFooter_drawableProgress));
         } else {
             mProgressDrawable = new ProgressDrawable();
             mProgressDrawable.setColor(0xff666666);
             mProgressView.setImageDrawable(mProgressDrawable);
         }
 
-        if (ta.hasValue(R.styleable.ClassicsFooter_srlTextSizeTitle)) {
-            mTitleText.setTextSize(TypedValue.COMPLEX_UNIT_PX, ta.getDimensionPixelSize(R.styleable.ClassicsFooter_srlTextSizeTitle, DensityUtil.dp2px(16)));
+        if (ta.hasValue(R.styleable.ClassicsFooter_textSizeTitle)) {
+            mTitleText.setTextSize(TypedValue.COMPLEX_UNIT_PX, ta.getDimensionPixelSize(R.styleable.ClassicsFooter_textSizeTitle, DensityUtil.dp2px(16)));
         } else {
             mTitleText.setTextSize(16);
         }
 
-        if (ta.hasValue(R.styleable.ClassicsFooter_srlPrimaryColor)) {
-            setPrimaryColor(ta.getColor(R.styleable.ClassicsFooter_srlPrimaryColor, 0));
+        if (ta.hasValue(R.styleable.ClassicsFooter_primaryColor)) {
+            setPrimaryColor(ta.getColor(R.styleable.ClassicsFooter_primaryColor, 0));
         }
-        if (ta.hasValue(R.styleable.ClassicsFooter_srlAccentColor)) {
-            setAccentColor(ta.getColor(R.styleable.ClassicsFooter_srlAccentColor, 0));
+        if (ta.hasValue(R.styleable.ClassicsFooter_accentColor)) {
+            setAccentColor(ta.getColor(R.styleable.ClassicsFooter_accentColor, 0));
         }
 
         ta.recycle();

@@ -15,9 +15,9 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlPrimaryColor="@color/colorPrimary"
-        app:srlAccentColor="@android:color/white"
-        app:srlFixedHeaderViewId="@+id/tableLayout">
+        app:primaryColor="@color/colorPrimary"
+        app:accentColor="@android:color/white"
+        app:fixedHeaderViewId="@+id/tableLayout">
         <LinearLayout
             android:id="@+id/loading"
             android:layout_width="match_parent"

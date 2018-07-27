@@ -21,8 +21,8 @@
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srlHeaderHeight="150dp"
-            app:srlHeaderMaxDragRate="1">
+            app:headerHeight="150dp"
+            app:headerMaxDragRate="1">
             <TextView
                 android:id="@+id/header"
                 android:layout_width="match_parent"
@@ -34,8 +34,8 @@
                 android:textColor="#aaa"
                 android:textSize="16sp"
                 android:text="@string/github_qq_browser_kernel"
-                app:layout_srlBackgroundColor="#555"
-                app:layout_srlSpinnerStyle="FixedBehind"/>
+                app:layout_backgroundColor="#555"
+                app:layout_spinnerStyle="FixedBehind"/>
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"

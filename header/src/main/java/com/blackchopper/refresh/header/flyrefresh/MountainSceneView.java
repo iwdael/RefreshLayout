@@ -80,10 +80,10 @@ public class MountainSceneView extends View {
         mBoarderPaint.setStrokeJoin(Paint.Join.ROUND);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MountainSceneView);
-        if (ta.hasValue(R.styleable.MountainSceneView_msvPrimaryColor)) {
-            setPrimaryColor(ta.getColor(R.styleable.MountainSceneView_msvPrimaryColor, 0xff000000));
+        if (ta.hasValue(R.styleable.MountainSceneView_primaryColor)) {
+            setPrimaryColor(ta.getColor(R.styleable.MountainSceneView_primaryColor, 0xff000000));
         }
-        mViewportHeight = ta.getDimensionPixelOffset(R.styleable.MountainSceneView_msvViewportHeight, 0);
+        mViewportHeight = ta.getDimensionPixelOffset(R.styleable.MountainSceneView_viewportHeight, 0);
         ta.recycle();
 
         updateMountainPath(mMoveFactor, HEIGHT);

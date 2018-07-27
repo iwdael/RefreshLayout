@@ -96,11 +96,11 @@ public class MaterialHeader extends InternalAbstract implements RefreshHeader {
         mBezierPaint.setStyle(Paint.Style.FILL);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MaterialHeader);
-        mShowBezierWave = ta.getBoolean(R.styleable.MaterialHeader_mhShowBezierWave, mShowBezierWave);
-        mBezierPaint.setColor(ta.getColor(R.styleable.MaterialHeader_mhPrimaryColor, 0xff11bbff));
-        if (ta.hasValue(R.styleable.MaterialHeader_mhShadowRadius)) {
-            int radius = ta.getDimensionPixelOffset(R.styleable.MaterialHeader_mhShadowRadius, 0);
-            int color = ta.getColor(R.styleable.MaterialHeader_mhShadowColor, 0xff000000);
+        mShowBezierWave = ta.getBoolean(R.styleable.MaterialHeader_showBezierWave, mShowBezierWave);
+        mBezierPaint.setColor(ta.getColor(R.styleable.MaterialHeader_primaryColor, 0xff11bbff));
+        if (ta.hasValue(R.styleable.MaterialHeader_shadowRadius)) {
+            int radius = ta.getDimensionPixelOffset(R.styleable.MaterialHeader_shadowRadius, 0);
+            int color = ta.getColor(R.styleable.MaterialHeader_shadowColor, 0xff000000);
             mBezierPaint.setShadowLayer(radius, 0, 0, color);
             thisView.setLayerType(LAYER_TYPE_SOFTWARE, null);
         }

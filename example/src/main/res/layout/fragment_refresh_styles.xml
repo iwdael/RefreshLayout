@@ -15,11 +15,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        app:srlPrimaryColor="@color/colorPrimary"
-        app:srlAccentColor="@color/colorBackgroundDark"
-        app:srlEnableLoadMore="true"
-        app:srlEnableAutoLoadMore="false"
-        app:srlEnablePreviewInEditMode="true">
+        app:primaryColor="@color/colorPrimary"
+        app:accentColor="@color/colorBackgroundDark"
+        app:enableLoadMore="true"
+        app:enableAutoLoadMore="false"
+        app:enablePreviewInEditMode="true">
         <com.blackchopper.refresh.core.footer.BallPulseFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

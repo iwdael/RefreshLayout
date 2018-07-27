@@ -18,13 +18,13 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlFooterTranslationViewId="@+id/recyclerView">
+        app:footerTranslationViewId="@+id/recyclerView">
         <com.blackchopper.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlClassicsSpinnerStyle="FixedBehind"
-            app:srlPrimaryColor="#444"
-            app:srlAccentColor="@android:color/white"/>
+            app:classicsSpinnerStyle="FixedBehind"
+            app:primaryColor="#444"
+            app:accentColor="@android:color/white"/>
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

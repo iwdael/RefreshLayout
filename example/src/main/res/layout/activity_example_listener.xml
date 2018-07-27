@@ -16,8 +16,8 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnableLoadMore="true"
-        app:srlEnableLoadMoreWhenContentNotFull="true">
+        app:enableLoadMore="true"
+        app:enableLoadMoreWhenContentNotFull="true">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

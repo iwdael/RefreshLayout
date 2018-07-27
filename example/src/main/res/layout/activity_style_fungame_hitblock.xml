@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        app:srlPrimaryColor="@color/colorPrimary"
-        app:srlAccentColor="@android:color/white"
-        app:srlEnableLoadMore="false">
+        app:primaryColor="@color/colorPrimary"
+        app:accentColor="@android:color/white"
+        app:enableLoadMore="false">
         <com.blackchopper.refresh.header.FunGameHitBlockHeader
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

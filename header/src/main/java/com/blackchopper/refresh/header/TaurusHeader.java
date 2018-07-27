@@ -172,7 +172,7 @@ public class TaurusHeader extends InternalAbstract implements RefreshHeader {
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TaurusHeader);
 
-        int primaryColor = ta.getColor(R.styleable.TaurusHeader_thPrimaryColor, 0);
+        int primaryColor = ta.getColor(R.styleable.TaurusHeader_primaryColor, 0);
         if (primaryColor != 0) {
             thisView.setBackgroundColor(primaryColor);
         } else {

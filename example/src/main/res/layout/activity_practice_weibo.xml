@@ -22,12 +22,12 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnablePreviewInEditMode="false">
+        app:enablePreviewInEditMode="false">
 
         <com.blackchopper.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlAccentColor="@android:color/white"/>
+            app:accentColor="@android:color/white"/>
 
         <android.support.v4.widget.NestedScrollView
             android:id="@+id/scrollView"

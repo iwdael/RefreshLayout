@@ -76,13 +76,13 @@ public class BallPulseFooter extends InternalAbstract implements RefreshFooter {
         mPaint.setAntiAlias(true);
 
         mSpinnerStyle = SpinnerStyle.Translate;
-        mSpinnerStyle = SpinnerStyle.values()[ta.getInt(R.styleable.BallPulseFooter_srlClassicsSpinnerStyle, mSpinnerStyle.ordinal())];
+        mSpinnerStyle = SpinnerStyle.values()[ta.getInt(R.styleable.BallPulseFooter_classicsSpinnerStyle, mSpinnerStyle.ordinal())];
 
-        if (ta.hasValue(R.styleable.BallPulseFooter_srlNormalColor)) {
-            setNormalColor(ta.getColor(R.styleable.BallPulseFooter_srlNormalColor, 0));
+        if (ta.hasValue(R.styleable.BallPulseFooter_normalColor)) {
+            setNormalColor(ta.getColor(R.styleable.BallPulseFooter_normalColor, 0));
         }
-        if (ta.hasValue(R.styleable.BallPulseFooter_srlAnimatingColor)) {
-            setAnimatingColor(ta.getColor(R.styleable.BallPulseFooter_srlAnimatingColor, 0));
+        if (ta.hasValue(R.styleable.BallPulseFooter_animatingColor)) {
+            setAnimatingColor(ta.getColor(R.styleable.BallPulseFooter_animatingColor, 0));
         }
 
         ta.recycle();

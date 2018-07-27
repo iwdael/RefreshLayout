@@ -11,10 +11,10 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlPrimaryColor="@color/colorPrimary"
-        app:srlAccentColor="@android:color/white"
-        app:srlEnableHeaderTranslationContent="false"
-        app:srlEnablePreviewInEditMode="false">
+        app:primaryColor="@color/colorPrimary"
+        app:accentColor="@android:color/white"
+        app:enableHeaderTranslationContent="false"
+        app:enablePreviewInEditMode="false">
         <com.blackchopper.refresh.header.MaterialHeader
             android:id="@+id/header"
             android:layout_width="match_parent"

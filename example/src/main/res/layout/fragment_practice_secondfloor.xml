@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
-        app:srlAccentColor="@android:color/white">
+        app:accentColor="@android:color/white">
         <com.blackchopper.refresh.core.header.TwoLevelHeader
             android:id="@+id/header"
             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
         <com.blackchopper.refresh.core.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlPrimaryColor="@android:color/white"/>
+            app:primaryColor="@android:color/white"/>
     </com.blackchopper.refresh.core.RefreshLayout>
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"

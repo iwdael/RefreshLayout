@@ -12,9 +12,9 @@
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnablePureScrollMode="true"
-        app:srlEnableLoadMore="true"
-        app:srlDragRate="0.75">
+        app:enablePureScrollMode="true"
+        app:enableLoadMore="true"
+        app:dragRate="0.75">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
