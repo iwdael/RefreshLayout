@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimary"
-    tools:context="com.blackchopper.refreshlayout.activity.practice.ProfilePracticeActivity">
+    tools:context="com.hacknife.refreshlayout.activity.practice.ProfilePracticeActivity">
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -171,7 +171,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
     <com.github.mmin18.widget.RealtimeBlurView
         android:id="@+id/blurView"

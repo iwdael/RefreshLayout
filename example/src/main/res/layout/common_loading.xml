@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.example.PureScrollExampleFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.example.PureScrollExampleFragment">
 
     <com.wang.avi.AVLoadingIndicatorView
         style="@style/AVLoadingIndicatorView.Large"

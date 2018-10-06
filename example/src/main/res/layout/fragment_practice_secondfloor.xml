@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.practice.SecondFloorPracticeFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.practice.SecondFloorPracticeFragment">
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipChildren="false"
         app:accentColor="@android:color/white">
-        <com.blackchopper.refresh.core.header.TwoLevelHeader
+        <com.hacknife.refresh.core.header.TwoLevelHeader
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -31,12 +31,12 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/image_secondfloor_content"
                 android:alpha="0"/>
-            <com.blackchopper.refresh.core.header.ClassicsHeader
+            <com.hacknife.refresh.core.header.ClassicsHeader
                 android:id="@+id/classics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"/>
-        </com.blackchopper.refresh.core.header.TwoLevelHeader>
+        </com.hacknife.refresh.core.header.TwoLevelHeader>
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
@@ -55,11 +55,11 @@
                     android:src="@mipmap/image_taobao"/>
             </FrameLayout>
         </ScrollView>
-        <com.blackchopper.refresh.core.footer.ClassicsFooter
+        <com.hacknife.refresh.core.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:primaryColor="@android:color/white"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"

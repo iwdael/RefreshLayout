@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blackchopper.refreshlayout.activity.ExperimentActivity">
+    tools:context="com.hacknife.refreshlayout.activity.ExperimentActivity">
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#888">
@@ -48,6 +48,6 @@
             <!--android:layout_height="wrap_content"-->
             <!--app:srlPrimaryColor="#444"-->
             <!--app:srlAccentColor="@android:color/white"/>-->
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </android.support.constraint.ConstraintLayout>

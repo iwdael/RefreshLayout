@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    tools:context="com.blackchopper.refreshlayout.activity.style.FlyRefreshStyleActivity">
+    tools:context="com.hacknife.refreshlayout.activity.style.FlyRefreshStyleActivity">
 
-    <com.blackchopper.refresh.header.flyrefresh.MountainSceneView
+    <com.hacknife.refresh.header.flyrefresh.MountainSceneView
         android:id="@+id/mountain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,7 +45,7 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -56,7 +56,7 @@
         app:enablePreviewInEditMode="true"
         app:enableOverScrollBounce="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-        <com.blackchopper.refresh.header.FlyRefreshHeader
+        <com.hacknife.refresh.header.FlyRefreshHeader
             android:id="@+id/flyRefresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -69,7 +69,7 @@
             android:background="@android:color/white"
             android:overScrollMode="never"
             tools:listitem="@layout/activity_fly_refresh_item"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -81,7 +81,7 @@
         app:layout_anchorGravity="top"
         app:elevation="0dp"  />
 
-    <com.blackchopper.refresh.header.flyrefresh.FlyView
+    <com.hacknife.refresh.header.flyrefresh.FlyView
         android:id="@+id/flyView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

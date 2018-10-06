@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.blackchopper.refreshlayout.activity.practice.WeiboPracticeActivity">
+    tools:context="com.hacknife.refreshlayout.activity.practice.WeiboPracticeActivity">
 
     <ImageView
         android:id="@+id/parallax"
@@ -18,13 +18,13 @@
         android:src="@mipmap/image_weibo_home_2"
         app:layout_collapseMode="parallax"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:enablePreviewInEditMode="false">
 
-        <com.blackchopper.refresh.core.header.ClassicsHeader
+        <com.hacknife.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:accentColor="@android:color/white"/>
@@ -1012,7 +1012,7 @@
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"

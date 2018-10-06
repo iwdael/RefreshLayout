@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.activity.example.AssignCodeExampleActivity">
+    tools:context="com.hacknife.refreshlayout.activity.example.AssignCodeExampleActivity">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/title_activity_example_assign_code"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,6 +22,6 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/padding_common"
             android:text="@string/description_define_in_code"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

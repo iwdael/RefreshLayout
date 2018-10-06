@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.index.RefreshExampleFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.index.RefreshExampleFragment">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
         app:title="@string/fragment_refresh_example"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +19,7 @@
         app:primaryColor="@color/colorPrimary"
         app:accentColor="@android:color/white"
         app:enableAutoLoadMore="false">
-        <com.blackchopper.refresh.core.header.ClassicsHeader
+        <com.hacknife.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:accentColor="#aaa"
@@ -32,9 +32,9 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             tools:listitem="@android:layout/simple_list_item_2"/>
-        <com.blackchopper.refresh.header.PhoenixHeader
+        <com.hacknife.refresh.header.PhoenixHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

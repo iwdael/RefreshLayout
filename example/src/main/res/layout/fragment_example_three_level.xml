@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.example.ThreeLevelExampleFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.example.ThreeLevelExampleFragment">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/fragment_example_three_level"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,10 +19,10 @@
         app:enableOverScrollBounce="false"
         app:enableNestedScrolling="true"
         app:headerMaxDragRate="1.5">
-        <com.blackchopper.refresh.core.header.ClassicsHeader
+        <com.hacknife.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <com.blackchopper.refresh.core.RefreshLayout
+        <com.hacknife.refresh.core.RefreshLayout
             android:id="@+id/refreshLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,19 +31,19 @@
             app:enableNestedScrolling="true"
             app:headerMaxDragRate="1.35"
             app:dragRate="0.75">
-            <com.blackchopper.refresh.core.header.ClassicsHeader
+            <com.hacknife.refresh.core.header.ClassicsHeader
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:primaryColor="#11bbff"
                 app:accentColor="#fff"/>
-            <com.blackchopper.refresh.core.RefreshLayout
+            <com.hacknife.refresh.core.RefreshLayout
                 android:id="@+id/refreshLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:enableNestedScrolling="true"
                 app:headerMaxDragRate="1.5"
                 app:dragRate="0.5">
-                <com.blackchopper.refresh.core.header.ClassicsHeader
+                <com.hacknife.refresh.core.header.ClassicsHeader
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:primaryColor="#3F51B5"
@@ -55,11 +55,11 @@
                     android:background="@color/colorAccent"
                     app:layoutManager="LinearLayoutManager"
                     tools:listitem="@android:layout/simple_list_item_2"/>
-                <com.blackchopper.refresh.core.footer.ClassicsFooter
+                <com.hacknife.refresh.core.footer.ClassicsFooter
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-            </com.blackchopper.refresh.core.RefreshLayout>
-        </com.blackchopper.refresh.core.RefreshLayout>
-    </com.blackchopper.refresh.core.RefreshLayout>
+            </com.hacknife.refresh.core.RefreshLayout>
+        </com.hacknife.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

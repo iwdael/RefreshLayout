@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundDark"
-    tools:context="com.blackchopper.refreshlayout.activity.practice.RepastPracticeActivity">
+    tools:context="com.hacknife.refreshlayout.activity.practice.RepastPracticeActivity">
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -33,13 +33,13 @@
             android:clipToPadding="false"
             android:overScrollMode="never"
             tools:listitem="@layout/listitem_practice_repast"/>
-        <com.blackchopper.refresh.core.footer.ClassicsFooter
+        <com.hacknife.refresh.core.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:accentColor="#888"
             app:classicsSpinnerStyle="Translate"
             app:drawableProgress="@drawable/ic_progress_puzzle"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
     <com.github.mmin18.widget.RealtimeBlurView
         android:id="@+id/blurView"

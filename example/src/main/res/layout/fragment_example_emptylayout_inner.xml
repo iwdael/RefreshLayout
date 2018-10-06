@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.example.EmptyLayoutExampleFragmentInner">
+    tools:context="com.hacknife.refreshlayout.fragment.example.EmptyLayoutExampleFragmentInner">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/fragment_example_empty_layout_inner"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -28,6 +28,6 @@
             <include layout="@layout/_loading_layout_empty"
                 android:id="@+id/empty"/>
         </FrameLayout>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.index.RefreshStylesFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.index.RefreshStylesFragment">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
         app:title="@string/fragment_refresh_styles"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,7 +20,7 @@
         app:enableLoadMore="true"
         app:enableAutoLoadMore="false"
         app:enablePreviewInEditMode="true">
-        <com.blackchopper.refresh.core.footer.BallPulseFooter
+        <com.hacknife.refresh.core.footer.BallPulseFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView
@@ -29,9 +29,9 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             tools:listitem="@android:layout/simple_list_item_2"/>
-        <com.blackchopper.refresh.header.TaurusHeader
+        <com.hacknife.refresh.header.TaurusHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

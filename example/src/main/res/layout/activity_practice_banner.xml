@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundDark"
-    tools:context="com.blackchopper.refreshlayout.activity.practice.WebViewPracticeActivity">
+    tools:context="com.hacknife.refreshlayout.activity.practice.WebViewPracticeActivity">
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,7 +17,7 @@
         app:enableHeaderTranslationContent="false"
         app:enablePreviewInEditMode="false"
         app:enableNestedScrolling="true">
-        <com.blackchopper.refresh.header.MaterialHeader
+        <com.hacknife.refresh.header.MaterialHeader
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:background="@android:color/white"
             android:overScrollMode="never"
             tools:listitem="@layout/listitem_movie_item"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
     <com.github.mmin18.widget.RealtimeBlurView
         android:id="@+id/blurView"

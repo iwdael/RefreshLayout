@@ -17,7 +17,7 @@
         tools:overrideLibrary="com.github.czy1121.loadinglayout"/>
 
     <application
-        android:name=".App"
+        android:name="com.hacknife.refreshlayout.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.IndexMainActivity"
+            android:name="com.hacknife.refreshlayout.activity.IndexMainActivity"
             android:label="@string/title_activity_index_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,121 +33,121 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.FragmentActivity"
+        <activity android:name="com.hacknife.refreshlayout.activity.FragmentActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".activity.style.FlyRefreshStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.FlyRefreshStyleActivity"
             android:label="@string/title_activity_style_fly_refresh"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.example.NestedLayoutExampleActivity"
+            android:name="com.hacknife.refreshlayout.activity.example.NestedLayoutExampleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.WaveSwipeStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.WaveSwipeStyleActivity"
             android:label="@string/title_activity_style_wave_swipe"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.MaterialStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.MaterialStyleActivity"
             android:label="@string/title_activity_style_material"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.WaterDropStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.WaterDropStyleActivity"
             android:label="@string/title_activity_style_water_drop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.PhoenixStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.PhoenixStyleActivity"
             android:label="@string/title_activity_style_phoenix"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.TaurusStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.TaurusStyleActivity"
             android:label="@string/title_activity_style_taurus"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.BezierRadarStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.BezierRadarStyleActivity"
             android:label="@string/title_activity_style_bezier"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.ClassicsStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.ClassicsStyleActivity"
             android:label="@string/title_activity_style_classics"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.BezierCircleStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.BezierCircleStyleActivity"
             android:label="@string/title_activity_style_circle"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.FunGameBattleCityStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.FunGameBattleCityStyleActivity"
             android:label="@string/title_activity_style_battle_city"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.FunGameHitBlockStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.FunGameHitBlockStyleActivity"
             android:label="@string/title_activity_style_hit_block"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.StoreHouseStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.StoreHouseStyleActivity"
             android:label="@string/title_activity_style_storehouse"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.DropBoxStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.DropBoxStyleActivity"
             android:label="@string/title_activity_style_drop_box"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.style.DeliveryStyleActivity"
+            android:name="com.hacknife.refreshlayout.activity.style.DeliveryStyleActivity"
             android:label="@string/title_activity_style_drop_box"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.example.BasicExampleActivity"
+            android:name="com.hacknife.refreshlayout.activity.example.BasicExampleActivity"
             android:label="@string/title_activity_example_basic"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.example.AssignDefaultExampleActivity"
+            android:name="com.hacknife.refreshlayout.activity.example.AssignDefaultExampleActivity"
             android:label="@string/title_activity_example_assign_default"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.example.AssignXmlExampleActivity"
+            android:name="com.hacknife.refreshlayout.activity.example.AssignXmlExampleActivity"
             android:label="@string/title_activity_example_assign_xml"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.example.AssignCodeExampleActivity"
+            android:name="com.hacknife.refreshlayout.activity.example.AssignCodeExampleActivity"
             android:label="@string/title_activity_example_assign_code"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.example.OverScrollExampleActivity"
+            android:name="com.hacknife.refreshlayout.activity.example.OverScrollExampleActivity"
             android:label="@string/title_activity_example_over_scroll"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.example.ListenerExampleActivity"
+            android:name="com.hacknife.refreshlayout.activity.example.ListenerExampleActivity"
             android:label="@string/title_activity_example_listener"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.practice.RepastPracticeActivity"
+            android:name="com.hacknife.refreshlayout.activity.practice.RepastPracticeActivity"
             android:label="@string/title_activity_practice_repast"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.practice.ProfilePracticeActivity"
+            android:name="com.hacknife.refreshlayout.activity.practice.ProfilePracticeActivity"
             android:label="@string/title_activity_practice_profile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.practice.WebViewPracticeActivity"
+            android:name="com.hacknife.refreshlayout.activity.practice.WebViewPracticeActivity"
             android:label="@string/title_activity_practice_profile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.practice.FeedListPracticeActivity"
+            android:name="com.hacknife.refreshlayout.activity.practice.FeedListPracticeActivity"
             android:label="@string/title_activity_practice_feed_list"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.practice.WeiboPracticeActivity"
+            android:name="com.hacknife.refreshlayout.activity.practice.WeiboPracticeActivity"
             android:label="@string/title_activity_practice_weibo"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.practice.BannerPracticeActivity"
+        <activity android:name="com.hacknife.refreshlayout.activity.practice.BannerPracticeActivity"
             android:label="@string/title_activity_practice_banner"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.practice.QQBrowserPracticeActivity"
+        <activity android:name="com.hacknife.refreshlayout.activity.practice.QQBrowserPracticeActivity"
             android:label="@string/title_activity_practice_qq_browser"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.example.CustomExampleActivity"
+        <activity android:name="com.hacknife.refreshlayout.activity.example.CustomExampleActivity"
             android:label="@string/title_activity_example_custom"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.example.SnapHelperExampleActivity"
+        <activity android:name="com.hacknife.refreshlayout.activity.example.SnapHelperExampleActivity"
             android:label="@string/title_activity_example_snap_helper"
             android:screenOrientation="portrait"/>
     </application>

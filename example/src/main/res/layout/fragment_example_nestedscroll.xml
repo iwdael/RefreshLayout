@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blackchopper.refreshlayout.fragment.example.NestedScrollExampleFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.example.NestedScrollExampleFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -32,7 +32,7 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,7 +41,7 @@
         app:primaryColor="@color/colorPrimary"
         app:accentColor="@android:color/white"
         app:enableLoadMore="false">
-        <com.blackchopper.refresh.header.PhoenixHeader
+        <com.hacknife.refresh.header.PhoenixHeader
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <android.support.v7.widget.RecyclerView
@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             tools:listitem="@android:layout/simple_list_item_2"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

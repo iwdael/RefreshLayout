@@ -4,20 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.index.RefreshStylesFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.index.RefreshStylesFragment">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@id/toolbar"
         app:title="@string/fragment_refresh_practice"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
         app:primaryColor="@color/colorTextContent"
         app:enableAutoLoadMore="false">
-        <com.blackchopper.refresh.core.header.ClassicsHeader
+        <com.hacknife.refresh.core.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:primaryColor="@color/colorPrimary"
@@ -29,10 +29,10 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             tools:listitem="@android:layout/simple_list_item_2"/>
-        <com.blackchopper.refresh.header.MaterialHeader
+        <com.hacknife.refresh.header.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleY="-1"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

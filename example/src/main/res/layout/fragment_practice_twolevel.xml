@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackchopper.refreshlayout.fragment.practice.TwoLevelPracticeFragment">
+    tools:context="com.hacknife.refreshlayout.fragment.practice.TwoLevelPracticeFragment">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
@@ -14,25 +14,25 @@
         app:title="二级刷新">
     </android.support.v7.widget.Toolbar>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.blackchopper.refresh.core.header.TwoLevelHeader
+        <com.hacknife.refresh.core.header.TwoLevelHeader
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.blackchopper.refresh.core.header.ClassicsHeader
+            <com.hacknife.refresh.core.header.ClassicsHeader
                 android:id="@+id/classics"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-        </com.blackchopper.refresh.core.header.TwoLevelHeader>
+        </com.hacknife.refresh.core.header.TwoLevelHeader>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:overScrollMode="never"
             tools:listitem="@layout/listitem_movie_item"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f0f0f0"
-    tools:context="com.blackchopper.refreshlayout.activity.style.DeliveryStyleActivity"
+    tools:context="com.hacknife.refreshlayout.activity.style.DeliveryStyleActivity"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
@@ -15,14 +15,14 @@
         app:navigationIcon="@drawable/ic_arrow_back_gray_24dp"
         app:title="@string/title_activity_style_delivery"/>
 
-    <com.blackchopper.refresh.core.RefreshLayout
+    <com.hacknife.refresh.core.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:dragRate="0.7"
         app:headerMaxDragRate="1.3"
         app:enableLoadMore="false">
-        <com.blackchopper.refresh.header.DeliveryHeader
+        <com.hacknife.refresh.header.DeliveryHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView
@@ -33,6 +33,6 @@
             android:padding="@dimen/padding_common_d"
             android:overScrollMode="never"
             tools:listitem="@layout/listitem_style_delivery"/>
-    </com.blackchopper.refresh.core.RefreshLayout>
+    </com.hacknife.refresh.core.RefreshLayout>
 
 </LinearLayout>

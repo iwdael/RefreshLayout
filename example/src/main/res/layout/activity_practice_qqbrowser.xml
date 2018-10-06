@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorBackgroundDark"
-    tools:context="com.blackchopper.refreshlayout.activity.practice.QQBrowserPracticeActivity">
+    tools:context="com.hacknife.refreshlayout.activity.practice.QQBrowserPracticeActivity">
 
     <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
         android:id="@+id/toolbar"
@@ -17,7 +17,7 @@
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.blackchopper.refresh.core.RefreshLayout
+        <com.hacknife.refresh.core.RefreshLayout
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
                 android:paddingTop="?attr/actionBarSize"/>
-        </com.blackchopper.refresh.core.RefreshLayout>
+        </com.hacknife.refresh.core.RefreshLayout>
     </ezy.ui.layout.LoadingLayout>
 
 </LinearLayout>
