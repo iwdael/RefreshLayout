@@ -1,1 +1,1 @@
-include ':example', ':refresh', ':header'
+include ':example', ':refresh', ':adapter'
