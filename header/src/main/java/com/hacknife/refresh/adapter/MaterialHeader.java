@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header;
+package com.hacknife.refresh.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,8 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.hacknife.refresh.core.api.Refresh;
-import com.hacknife.refresh.header.internal.MaterialProgressDrawable;
-import com.hacknife.refresh.header.material.CircleImageView;
+import com.hacknife.refresh.adapter.internal.MaterialProgressDrawable;
+import com.hacknife.refresh.adapter.material.CircleImageView;
 import com.hacknife.refresh.core.api.RefreshHeader;
 import com.hacknife.refresh.core.api.RefreshKernel;
 import com.hacknife.refresh.core.constant.RefreshState;

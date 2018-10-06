@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header.fungame;
+package com.hacknife.refresh.adapter.fungame;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

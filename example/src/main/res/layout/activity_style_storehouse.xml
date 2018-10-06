@@ -21,7 +21,7 @@
         app:accentColor="#fff"
         app:enableLoadMore="false"
         app:enableHeaderTranslationContent="true">
-        <com.hacknife.refresh.header.StoreHouseHeader
+        <com.hacknife.refresh.adapter.StoreHouseHeader
             android:id="@+id/storeHouseHeader"
             android:layout_width="match_parent"
             android:layout_height="100dp"

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hacknife.refresh.header.internal;
+package com.hacknife.refresh.adapter.internal;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;

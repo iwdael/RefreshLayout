@@ -23,7 +23,7 @@
         app:accentColor="@android:color/white"
         app:enableHeaderTranslationContent="true"
         app:enableLoadMore="false">
-        <com.hacknife.refresh.header.DropBoxHeader
+        <com.hacknife.refresh.adapter.DropBoxHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView

@@ -21,7 +21,7 @@
         app:accentColor="@android:color/white"
         app:enableHeaderTranslationContent="false"
         app:enableLoadMore="false">
-        <com.hacknife.refresh.header.MaterialHeader
+        <com.hacknife.refresh.adapter.MaterialHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView

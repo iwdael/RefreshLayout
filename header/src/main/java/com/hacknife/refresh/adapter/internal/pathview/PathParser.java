@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.hacknife.refresh.header.internal.pathview;
+package com.hacknife.refresh.adapter.internal.pathview;
 
 import android.graphics.Matrix;
 import android.graphics.Path;

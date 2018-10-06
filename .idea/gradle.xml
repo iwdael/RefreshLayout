@@ -9,7 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/example" />
-            <option value="$PROJECT_DIR$/footer" />
             <option value="$PROJECT_DIR$/header" />
             <option value="$PROJECT_DIR$/refresh" />
           </set>

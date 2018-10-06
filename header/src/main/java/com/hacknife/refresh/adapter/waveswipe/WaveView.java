@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hacknife.refresh.header.waveswipe;
+package com.hacknife.refresh.adapter.waveswipe;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

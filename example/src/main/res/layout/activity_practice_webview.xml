@@ -15,7 +15,7 @@
         app:accentColor="@android:color/white"
         app:enableHeaderTranslationContent="false"
         app:enablePreviewInEditMode="false">
-        <com.hacknife.refresh.header.MaterialHeader
+        <com.hacknife.refresh.adapter.MaterialHeader
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

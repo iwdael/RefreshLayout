@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.hacknife.refreshlayout.R;
 import com.hacknife.refreshlayout.adapter.BaseRecyclerAdapter;
 import com.hacknife.refreshlayout.adapter.SmartViewHolder;
-import com.hacknife.refresh.header.PhoenixHeader;
+import com.hacknife.refresh.adapter.PhoenixHeader;
 import com.hacknife.refresh.core.RefreshLayout;
 import com.hacknife.refresh.core.api.Refresh;
 

@@ -20,7 +20,7 @@
         app:primaryColor="@color/colorPrimary"
         app:accentColor="@android:color/white"
         app:enableLoadMore="false">
-        <com.hacknife.refresh.header.FunGameBattleCityHeader
+        <com.hacknife.refresh.adapter.FunGameBattleCityHeader
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
         <android.support.v7.widget.RecyclerView

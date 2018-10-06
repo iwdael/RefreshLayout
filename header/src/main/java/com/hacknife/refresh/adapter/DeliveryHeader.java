@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header;
+package com.hacknife.refresh.adapter;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.hacknife.refresh.core.api.Refresh;
-import com.hacknife.refresh.header.internal.pathview.PathsDrawable;
+import com.hacknife.refresh.adapter.internal.pathview.PathsDrawable;
 import com.hacknife.refresh.core.api.RefreshHeader;
 import com.hacknife.refresh.core.api.RefreshKernel;
 import com.hacknife.refresh.core.constant.RefreshState;

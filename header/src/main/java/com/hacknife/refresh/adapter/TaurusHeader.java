@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header;
+package com.hacknife.refresh.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,7 +17,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 
 import com.hacknife.refresh.core.api.Refresh;
-import com.hacknife.refresh.header.internal.pathview.PathsDrawable;
+import com.hacknife.refresh.adapter.internal.pathview.PathsDrawable;
 import com.hacknife.refresh.core.api.RefreshHeader;
 import com.hacknife.refresh.core.constant.SpinnerStyle;
 import com.hacknife.refresh.core.internal.InternalAbstract;

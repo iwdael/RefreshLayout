@@ -1,9 +1,9 @@
-package com.hacknife.refresh.header.flyrefresh;
+package com.hacknife.refresh.adapter.flyrefresh;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.hacknife.refresh.header.internal.pathview.PathsView;
+import com.hacknife.refresh.adapter.internal.pathview.PathsView;
 import com.hacknife.refresh.core.util.DensityUtil;
 
 /**

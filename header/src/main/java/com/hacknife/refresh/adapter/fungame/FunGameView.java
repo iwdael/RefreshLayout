@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header.fungame;
+package com.hacknife.refresh.adapter.fungame;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.hacknife.refresh.header.R;
+import com.hacknife.refresh.adapter.R;
 import com.hacknife.refresh.core.api.RefreshKernel;
 import com.hacknife.refresh.core.api.Refresh;
 import com.hacknife.refresh.core.constant.RefreshState;

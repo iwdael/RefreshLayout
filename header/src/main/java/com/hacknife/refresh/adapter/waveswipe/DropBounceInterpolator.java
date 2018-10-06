@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header.waveswipe;
+package com.hacknife.refresh.adapter.waveswipe;
 /*
  * Copyright (C) 2015 RECRUIT LIFESTYLE CO., LTD.
  *

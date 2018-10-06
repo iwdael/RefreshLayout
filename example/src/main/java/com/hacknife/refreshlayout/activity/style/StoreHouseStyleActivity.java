@@ -18,7 +18,7 @@ import com.hacknife.refresh.core.api.Refresh;
 import com.hacknife.refreshlayout.R;
 import com.hacknife.refreshlayout.adapter.BaseRecyclerAdapter;
 import com.hacknife.refreshlayout.adapter.SmartViewHolder;
-import com.hacknife.refresh.header.StoreHouseHeader;
+import com.hacknife.refresh.adapter.StoreHouseHeader;
 import com.hacknife.refresh.core.api.RefreshHeader;
 
 import java.util.ArrayList;

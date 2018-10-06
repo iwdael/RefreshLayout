@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.hacknife.refresh.header.material;
+package com.hacknife.refresh.adapter.material;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

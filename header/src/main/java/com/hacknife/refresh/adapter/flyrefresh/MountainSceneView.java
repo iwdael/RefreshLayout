@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header.flyrefresh;
+package com.hacknife.refresh.adapter.flyrefresh;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,7 +14,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Interpolator;
 
-import com.hacknife.refresh.header.R;
+import com.hacknife.refresh.adapter.R;
 
 /**
  * 山丘树木场景视图

@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header;
+package com.hacknife.refresh.adapter;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
 import com.hacknife.refresh.core.api.Refresh;
-import com.hacknife.refresh.header.internal.pathview.PathsDrawable;
+import com.hacknife.refresh.adapter.internal.pathview.PathsDrawable;
 import com.hacknife.refresh.core.api.RefreshHeader;
 import com.hacknife.refresh.core.api.RefreshKernel;
 import com.hacknife.refresh.core.constant.RefreshState;

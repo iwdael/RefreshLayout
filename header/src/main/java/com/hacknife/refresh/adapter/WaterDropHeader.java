@@ -4,7 +4,7 @@
  * @author Maxwin
  * @description XListView's header
  */
-package com.hacknife.refresh.header;
+package com.hacknife.refresh.adapter;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.hacknife.refresh.header.internal.MaterialProgressDrawable;
-import com.hacknife.refresh.header.waterdrop.WaterDropView;
+import com.hacknife.refresh.adapter.internal.MaterialProgressDrawable;
+import com.hacknife.refresh.adapter.waterdrop.WaterDropView;
 import com.hacknife.refresh.core.api.RefreshHeader;
 import com.hacknife.refresh.core.api.Refresh;
 import com.hacknife.refresh.core.constant.RefreshState;

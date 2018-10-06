@@ -22,7 +22,7 @@
         app:accentColor="@android:color/white"
         app:enableLoadMore="false">
         <!--srlHeaderMaxDragRate=2.5时候WaterDropHeader的下拉效果最好-->
-        <com.hacknife.refresh.header.WaterDropHeader
+        <com.hacknife.refresh.adapter.WaterDropHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView

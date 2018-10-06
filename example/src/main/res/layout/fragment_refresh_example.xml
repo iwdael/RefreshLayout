@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             tools:listitem="@android:layout/simple_list_item_2"/>
-        <com.hacknife.refresh.header.PhoenixHeader
+        <com.hacknife.refresh.adapter.PhoenixHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.hacknife.refresh.core.RefreshLayout>

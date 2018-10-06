@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.hacknife.refresh.core.api.Refresh;
 import com.hacknife.refreshlayout.R;
-import com.hacknife.refresh.header.MaterialHeader;
+import com.hacknife.refresh.adapter.MaterialHeader;
 import com.hacknife.refresh.core.constant.RefreshState;
 import com.hacknife.refresh.core.constant.SpinnerStyle;
 import com.hacknife.refresh.core.footer.BallPulseFooter;

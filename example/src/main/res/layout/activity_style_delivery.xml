@@ -22,7 +22,7 @@
         app:dragRate="0.7"
         app:headerMaxDragRate="1.3"
         app:enableLoadMore="false">
-        <com.hacknife.refresh.header.DeliveryHeader
+        <com.hacknife.refresh.adapter.DeliveryHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <android.support.v7.widget.RecyclerView

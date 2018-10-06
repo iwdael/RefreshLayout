@@ -1,4 +1,4 @@
-package com.hacknife.refresh.header.internal.pathview;
+package com.hacknife.refresh.adapter.internal.pathview;
 
 import android.content.Context;
 import android.graphics.Canvas;
