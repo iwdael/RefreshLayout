@@ -1,1 +1,1 @@
-include ':example', ':refresh', ':header', ':footer'
+include ':example', ':refresh', ':header'

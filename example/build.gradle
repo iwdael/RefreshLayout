@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.blackchopper.refreshlayout"
+        applicationId "com.hacknife.refreshlayout"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
@@ -24,7 +24,6 @@ repositories {
 }
 dependencies {
     implementation project(':refresh')
-    implementation project(':footer')
     implementation project(':header')
     implementation 'com.android.support:appcompat-v7:26.0.0'
     implementation 'com.android.support:design:26.0.0'
@@ -42,7 +41,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'jp.wasabeef:recyclerview-animators:2.2.6'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
-    implementation 'com.github.bumptech.glide:glide:4.0.0'
-    annotationProcessor 'com.github.bumptech.glide:implementationr:4.0.0'
-
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:implementationr:4.7.1'
 }
