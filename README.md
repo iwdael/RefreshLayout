@@ -1,5 +1,5 @@
-# RefreshLayout  [![](https://jitpack.io/v/hacknife/refreshlayout.svg)](https://jitpack.io/#hacknife/refreshlayout)
-上拉刷新和下拉加载是列表中最常见的数据更新功能。RefreshLayout不仅实现了这些功能，还为开发者提供了三个接口来实现相应的加载过渡效果。[English](https://github.com/hacknife/RefreshAndLoadLayout/blob/master/README_ENGLISH.md)
+# RefreshLayout [![](https://img.shields.io/badge/platform-android-orange.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/language-java-yellow.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/Jcenter-1.3.7-brightgreen.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/license-apache--2.0-green.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/api-19+-green.svg)](https://github.com/hacknife)<br/><br/>
+上拉刷新和下拉加载是列表中最常见的数据更新功能。RefreshLayout不仅实现了这些功能，还为开发者提供了三个接口来实现相应的加载过渡效果。
 ## 使用说明
 RefreshAndLoadLayout为使用者提供了三个接口，分别是onRefresh, onNormal, onLoose。对应的功能是开始刷新，停止刷新，松手刷新。在布局中，它必须有三个子控件，第一个为头部刷新控件，第二个为内容区域，第三个为尾部加载控件。
 ### 代码示例

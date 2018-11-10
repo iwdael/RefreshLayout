@@ -8,10 +8,11 @@ buildscript {
             name 'Google'
         }
         jcenter()
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-
+        classpath 'com.novoda:bintray-release:0.7.0'
     }
 }
 
@@ -24,6 +25,10 @@ allprojects {
             name 'Google'
         }
         jcenter()
+    }
+    tasks.withType(Javadoc){
+        options.addStringOption('Xdoclint:none','-quiet')
+        options.addStringOption('encoding','UTF-8')
     }
 }
 

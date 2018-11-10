@@ -1,11 +1,10 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
-
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
     }
@@ -15,5 +14,13 @@ android {
 dependencies {
     implementation project(':refresh')
     implementation 'com.android.support:support-annotations:26.0.0'
-    implementation 'com.android.support:support-v4:26.0.0'
+    compileOnly 'com.android.support:support-v4:26.0.0'
+}
+publish{
+    userOrg = 'hacknife'
+    groupId = 'com.hacknife.refreshlayout'
+    artifactId = 'refresh-adapter'
+    publishVersion = '1.3.7'
+    desc = ''
+    website = 'https://github.com/hacknife/refreshlayout'
 }

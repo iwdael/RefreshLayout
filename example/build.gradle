@@ -2,8 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
-    defaultConfig {
+     defaultConfig {
         applicationId "com.hacknife.refreshlayout"
         minSdkVersion 19
         targetSdkVersion 26
